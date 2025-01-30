@@ -16,5 +16,12 @@ namespace SmartOrder.Data
             : base(options)
         {
         }
+
+        public virtual DbSet<Venue> Venues { get; set; } = null!;
+        public virtual DbSet<Table> Tables { get; set; } = null!;
+        public virtual DbSet<MenuCategory> MenuCategories { get; set; } = null!;
+        public virtual DbSet<MenuItem> MenuItems { get; set; } = null!;
+        public virtual DbSet<OrderItem> OrderItems { get; set; } = null!;
+        public virtual DbSet<Order> Orders { get; set; } = null!;
     }
 }

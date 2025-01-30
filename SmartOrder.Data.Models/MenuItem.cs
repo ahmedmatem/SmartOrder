@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static SmartOrder.Common.EntityValidationConstants.MenuItem;
+
 namespace SmartOrder.Data.Models
 {
     public class MenuItem
