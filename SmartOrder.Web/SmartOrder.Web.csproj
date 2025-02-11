@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartOrder.Common\SmartOrder.Common.csproj" />
     <ProjectReference Include="..\SmartOrder.Data\SmartOrder.Data.csproj" />
+    <ProjectReference Include="..\SmartOrder.Web.Infrastructure\SmartOrder.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SmartOrder.Web.ViewModels\SmartOrder.Web.ViewModels.csproj" />
   </ItemGroup>
 

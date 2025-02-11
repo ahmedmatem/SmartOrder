@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartOrder.Data;
 using SmartOrder.Data.Models;
+using SmartOrder.Web.Infrastructure.Extensions;
 namespace SmartOrder.Web
 {
     public class Program
@@ -11,8 +12,7 @@ namespace SmartOrder.Web
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
             builder.Services
                 .AddDbContext<ApplicationDbContext>(options =>
@@ -29,6 +29,8 @@ namespace SmartOrder.Web
                 .AddRoles<IdentityRole<Guid>>()
                 .AddSignInManager<SignInManager<ApplicationUser>>()
                 .AddUserManager<UserManager<ApplicationUser>>();
+
+            builder.Services.RegisterRepositories(typeof(ApplicationUser).Assembly);
 
             builder.Services.AddControllersWithViews(cfg =>
                 {

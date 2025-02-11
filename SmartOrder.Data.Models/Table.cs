@@ -23,7 +23,7 @@ namespace SmartOrder.Data.Models
 
         [Required]
         [Comment("Unique long length token for the table.")]
-        public string Token { get; set; } = string.Empty;
+        public string Token { get; set; } = Guid.NewGuid().ToString();
 
         public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
