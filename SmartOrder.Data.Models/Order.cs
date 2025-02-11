@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SmartOrder.Common.Enums;
 
 namespace SmartOrder.Data.Models
 {
@@ -18,7 +19,14 @@ namespace SmartOrder.Data.Models
         public Table Table { get; set; } = null!;
 
         [Comment("Status of the order {e.g., Pending, Completed, Cancelled, …}")]
-        public int OrderStatus { get; set; }
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+
+        [Required]
+        [Comment("Assigned Waiter Identifier")]
+        public Guid? AssignedWaiterId { get; set; }
+
+        [ForeignKey(nameof(AssignedWaiterId))]
+        public ApplicationUser? AssignedWaiter { get; set; }
 
         [NotMapped]
         public decimal TotalPrice => Items?.Sum(oi => oi.TotalPrice) ?? 0;

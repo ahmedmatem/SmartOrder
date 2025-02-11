@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static SmartOrder.Common.EntityValidationConstants.OrderItem;
 namespace SmartOrder.Data.Models
 {
     public class OrderItem
@@ -17,21 +16,24 @@ namespace SmartOrder.Data.Models
         [ForeignKey(nameof(OrderId))]
         public Order Order { get; set; } = null!;
 
+        [Required]
+        [Comment("Menu Item Identifier")]
+        public Guid MenuItemId { get; set; }
+
+        [ForeignKey(nameof(MenuItemId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
+        public MenuItem MenuItem { get; set; } = null!;
+
         [Comment("Quantity of the item ordered.")]
         public int Quantity { get; set; }
-
-        [MaxLength(NameMaxLength)]
-        [Comment("Item name.")]
-        public string Name { get; set; } = string.Empty;
-
-        [Column(TypeName = "decimal(18, 2)")]
-        [Comment("Price of a single unit of the item.")]
-        public decimal UnitPrice { get; set; }
 
         [Comment("Additional notes or comments about the item.")]
         public string Notes { get; set; } = string.Empty;
 
+        [Comment("Is item served by waiter")]
+        public bool IsServed { get; set; } = false;
+
         [NotMapped]
-        public decimal TotalPrice => Quantity * UnitPrice;
+        public decimal TotalPrice => Quantity * MenuItem.Price;
     }
 }

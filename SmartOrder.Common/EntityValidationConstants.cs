@@ -28,12 +28,6 @@
             public const int DescriptionMaxLength = 250;
         }
 
-        public static class OrderItem
-        {
-            public const int NameMinLength = 2;
-            public const int NameMaxLength = 50;
-        }
-
         public static class ApplicationUser
         {
             public const int FullNameMaxLength = 50;

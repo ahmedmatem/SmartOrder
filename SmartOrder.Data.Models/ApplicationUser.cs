@@ -21,6 +21,6 @@ namespace SmartOrder.Data.Models
         public Guid? VenueId { get; set; }
 
         [ForeignKey(nameof(VenueId))]
-        public Venue Venue { get; set; } = null!;
+        public Venue? Venue { get; set; }
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Web", "SmartOrder.Web\SmartOrder.Web.csproj", "{825A0F13-FCDD-4A0E-B7F6-EACF4FC04E23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Web", "SmartOrder.Web\SmartOrder.Web.csproj", "{825A0F13-FCDD-4A0E-B7F6-EACF4FC04E23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{331025A1-C824-485A-A5C5-C7333EE19CBF}"
 EndProject
@@ -11,19 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{1A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{40CC6364-F20F-4423-B467-2177655538CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Web.Infrastructure", "SmartOrder.Web.Infrastructure\SmartOrder.Web.Infrastructure.csproj", "{5F7D7B2E-24C7-4ADC-BADD-5E2909D8F4F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Web.Infrastructure", "SmartOrder.Web.Infrastructure\SmartOrder.Web.Infrastructure.csproj", "{5F7D7B2E-24C7-4ADC-BADD-5E2909D8F4F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Web.ViewModels", "SmartOrder.Web.ViewModels\SmartOrder.Web.ViewModels.csproj", "{826FA830-A6EE-4FD9-80EE-6894AD043A18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Web.ViewModels", "SmartOrder.Web.ViewModels\SmartOrder.Web.ViewModels.csproj", "{826FA830-A6EE-4FD9-80EE-6894AD043A18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Common", "SmartOrder.Common\SmartOrder.Common.csproj", "{48ABD0BA-86CB-4174-A87B-826B155A386D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Common", "SmartOrder.Common\SmartOrder.Common.csproj", "{48ABD0BA-86CB-4174-A87B-826B155A386D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Data", "SmartOrder.Data\SmartOrder.Data.csproj", "{1E6C50A0-972B-4826-BD35-8FF07B21916F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Data", "SmartOrder.Data\SmartOrder.Data.csproj", "{1E6C50A0-972B-4826-BD35-8FF07B21916F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Data.Models", "SmartOrder.Data.Models\SmartOrder.Data.Models.csproj", "{2A28CCF5-5012-48D2-A7FD-68ADD08E12CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Data.Models", "SmartOrder.Data.Models\SmartOrder.Data.Models.csproj", "{2A28CCF5-5012-48D2-A7FD-68ADD08E12CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Services.Data", "SmartOrder.Services.Data\SmartOrder.Services.Data.csproj", "{3F0CA47F-2A3B-4951-8551-29E23983F92C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartOrder.Services.Mapping", "SmartOrder.Services.Mapping\SmartOrder.Services.Mapping.csproj", "{368BF69C-14C5-4C1D-8B3F-F9E8F2700852}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOrder.Services.Data", "SmartOrder.Services.Data\SmartOrder.Services.Data.csproj", "{3F0CA47F-2A3B-4951-8551-29E23983F92C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{3F0CA47F-2A3B-4951-8551-29E23983F92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F0CA47F-2A3B-4951-8551-29E23983F92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F0CA47F-2A3B-4951-8551-29E23983F92C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{368BF69C-14C5-4C1D-8B3F-F9E8F2700852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{368BF69C-14C5-4C1D-8B3F-F9E8F2700852}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{368BF69C-14C5-4C1D-8B3F-F9E8F2700852}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{368BF69C-14C5-4C1D-8B3F-F9E8F2700852}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,7 +68,6 @@ Global
 		{1E6C50A0-972B-4826-BD35-8FF07B21916F} = {40CC6364-F20F-4423-B467-2177655538CC}
 		{2A28CCF5-5012-48D2-A7FD-68ADD08E12CA} = {40CC6364-F20F-4423-B467-2177655538CC}
 		{3F0CA47F-2A3B-4951-8551-29E23983F92C} = {1A9128D2-DE97-4270-B5B3-D4790B424308}
-		{368BF69C-14C5-4C1D-8B3F-F9E8F2700852} = {1A9128D2-DE97-4270-B5B3-D4790B424308}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9328DB67-4E96-4CA8-B2E6-9B6A2AE8A8E4}

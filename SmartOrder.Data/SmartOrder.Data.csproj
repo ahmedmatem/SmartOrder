@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartOrder.Common\SmartOrder.Common.csproj" />
     <ProjectReference Include="..\SmartOrder.Data.Models\SmartOrder.Data.Models.csproj" />
-    <ProjectReference Include="..\SmartOrder.Services.Mapping\SmartOrder.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>
