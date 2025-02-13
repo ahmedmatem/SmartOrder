@@ -22,5 +22,7 @@ namespace SmartOrder.Data.Models
 
         [ForeignKey(nameof(VenueId))]
         public Venue? Venue { get; set; }
+
+        public ICollection<Order> AssignedOrders { get; set; } = new List<Order>();
     }
 }

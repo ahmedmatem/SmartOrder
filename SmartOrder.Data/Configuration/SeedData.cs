@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SmartOrder.Data.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SmartOrder.Data.Configuration
 {
