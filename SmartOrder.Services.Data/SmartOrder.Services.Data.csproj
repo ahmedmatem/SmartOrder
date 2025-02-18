@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\SmartOrder.Data.Models\SmartOrder.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>
