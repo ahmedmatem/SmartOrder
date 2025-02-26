@@ -1,0 +1,240 @@
+﻿@using SmartOrder.Web.ViewModels.MenuCategory
+@using SmartOrder.Web.ViewModels.MenuItem
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@model IEnumerable<MenuItemViewModel>
+@{
+    ViewBag.Title = "Меню на ресторанта";
+    string token = ViewBag.Token;
+}
+
+<input name="__RequestVerificationToken" type="hidden" value="@Antiforgery.GetAndStoreTokens(HttpContextAccessor.HttpContext).RequestToken" />
+<input id="token" type="hidden" value="@token" />
+
+<div class="category-menu" style="overflow-x: auto; display: flex; gap: 10px; padding: 10px; background: #fff;">
+    <button class="category-btn active" data-category="all">Всички</button>
+    @foreach (var category in ViewBag.Categories as IEnumerable<MenuCategoryViewModel>)
+    {
+        <button class="category-btn" data-category="@category.Id">@category.Title</button>
+    }
+</div>
+
+<div class="menu-items" style="padding: 10px;">
+    @foreach (var item in Model)
+    {
+        <div class="menu-item" data-category="@item.MenuCategoryId" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            <img src="@item.ImageUrl" alt="@item.Title" style="width: 100%; max-width: 150px;" />
+            <h3>@item.Title</h3>
+            <p>@item.Description</p>
+            <span>@item.Price лв</span>
+            <div class="item-actions" style="margin-top: 10px; display: flex; align-items: center; gap: 5px;">
+                <button class="decrease-quantity">-</button>
+                <input type="number" value="1" min="1" class="quantity-input" style="width: 50px; text-align: center;" />
+                <button class="increase-quantity">+</button>
+                <button class="add-to-cart-btn" data-id="@item.Id">Добави</button>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="cart-footer" style="position: fixed; bottom: 0; width: 100%; background: #f8f8f8; border-top: 1px solid #ccc; padding: 10px;">
+    <div class="cart-summary" style="display: flex; justify-content: space-between; align-items: center;">
+        <span>Обща цена: <span id="totalPrice">0</span> лв</span>
+        <button id="toggleCart">⬆</button>
+    </div>
+    <div class="cart-details" style="display: none; background: #fff; padding: 10px; margin-top: 10px;">
+        <div id="cartContent">
+        </div>
+        <form asp-action="Checkout" asp-controller="OrderSubmission" method="get">
+            <input type="hidden" name="token" value="@ViewBag.Token" />
+            <button type="submit" class="btn btn-primary">Преглед на поръчката</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const menuItems = document.querySelectorAll(".menu-item");
+
+        categoryButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const selectedCategory = this.getAttribute("data-category").toLowerCase();
+                console.log(selectedCategory);
+                menuItems.forEach(item => {
+                    const itemCategory = item.getAttribute("data-category").toLowerCase();
+                    console.log(itemCategory);
+
+                    if (selectedCategory === "all" || itemCategory === selectedCategory) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+    
+    document.getElementById('toggleCart').addEventListener('click', function () {
+        const toggleCartBtn = document.getElementById("toggleCart");
+        var cartDetails = document.querySelector('.cart-details');
+        if (cartDetails.style.display === 'none' || cartDetails.style.display === '') {
+            cartDetails.style.display = 'block';
+            toggleCartBtn.textContent = "⬇";
+            loadCartContent();
+        } else {
+            cartDetails.style.display = 'none';
+            toggleCartBtn.textContent = "⬆";
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        const menuItems = document.querySelectorAll(".menu-item");
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const menuItemId = this.getAttribute("data-id")?.trim();
+                const quantityInput = this.parentElement.querySelector(".quantity-input");
+                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+                const menuItem = this.closest(".menu-item");
+                const title = menuItem.querySelector("h3").textContent.trim();
+                const priceText = menuItem.querySelector("span").textContent.replace(" лв", "").trim();
+                const price = parseFloat(priceText) || 0;
+
+                if (!menuItemId || isNaN(quantity) || quantity <= 0 || isNaN(price) || price <= 0) {
+                    alert("Invalid item details.");
+                    return;
+                }
+
+                const payload = {
+                    MenuItemId: menuItemId,
+                    Title: title,
+                    Price: price,
+                    Quantity: quantity,
+                    Notes: ""
+                };
+
+                fetch("/Cart/AddToCart", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => response.json())
+                    .then(() => {
+                        loadCartContent();
+                    })
+                    .catch(() => {
+                        alert("Something went wrong.");
+                    });
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".increase-quantity").forEach(button => {
+            button.addEventListener("click", function () {
+                let input = this.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+            });
+        });
+
+        document.querySelectorAll(".decrease-quantity").forEach(button => {
+            button.addEventListener("click", function () {
+                let input = this.nextElementSibling;
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            });
+        });
+
+        function updateCartContent() {
+            fetch('/Cart/GetCartItems')
+                .then(response => response.json())
+                .then(data => {
+                    let cartContent = document.getElementById('cartContent');
+                    cartContent.innerHTML = '';
+
+                    data.items.forEach(item => {
+                        let itemDiv = document.createElement('div');
+                        itemDiv.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span>${item.Title}</span>
+                                    <button class="decrease-cart" data-id="${item.MenuItemId}">-</button>
+                                    <span>${item.Quantity}</span>
+                                    <button class="increase-cart" data-id="${item.MenuItemId}">+</button>
+                                    <span>${item.TotalPrice} лв</span>
+                                </div>`;
+                        cartContent.appendChild(itemDiv);
+                    });
+                });
+        }
+
+        document.addEventListener("click", function (event) {
+            if (event.target.classList.contains("increase-cart")) {
+                let itemId = event.target.getAttribute("data-id");
+                fetch('/Cart/AddToCart', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ MenuItemId: itemId, Quantity: 1 })
+                }).then(() => updateCartContent());
+            }
+
+            if (event.target.classList.contains("decrease-cart")) {
+                let itemId = event.target.getAttribute("data-id");
+                fetch('/Cart/RemoveFromCart', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(itemId)
+                }).then(() => updateCartContent());
+            }
+        });
+
+        updateCartContent();
+    });
+
+    function updateCartTotal() {
+        loadCartContent();
+    }
+
+    function loadCartContent() {
+        fetch('/Cart/GetCartItems')
+            .then(response => response.json())
+            .then(data => {
+                var cartContent = document.getElementById('cartContent');
+                var totalPriceElement = document.getElementById('totalPrice');
+
+                cartContent.innerHTML = '';
+
+                if (data.items && data.items.length > 0) {
+                    data.items.forEach(item => {
+                        var itemTitle = item["title"] ?? "Unknown Item";
+                        var itemQuantity = item["quantity"] ?? 0;
+                        var itemPrice = item["price"] ?? "0.00";
+                        var itemTotal = item["totalPrice"] ?? "0.00";
+
+                        var itemDiv = document.createElement('div');
+                        itemDiv.style.borderBottom = '1px solid #ccc';
+                        itemDiv.style.padding = '5px 0';
+                        itemDiv.innerHTML = `${itemTitle} x ${itemQuantity} - ${itemPrice} лв (Total: ${itemTotal} лв)`;
+
+                        cartContent.appendChild(itemDiv);
+                    });
+
+                    totalPriceElement.textContent = data["total"] ?? "0.00";
+                } else {
+                    cartContent.innerHTML = '<p>Количката е празна.</p>';
+                    totalPriceElement.textContent = "0.00";
+                }
+            })
+            .catch(error => {
+                console.error("Error loading cart:", error);
+            });
+    }
+
+    loadCartContent();
+</script>

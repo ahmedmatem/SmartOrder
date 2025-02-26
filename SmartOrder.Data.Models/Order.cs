@@ -21,7 +21,6 @@ namespace SmartOrder.Data.Models
         [Comment("Status of the order {e.g., Pending, Completed, Cancelled, …}")]
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
-        [Required]
         [Comment("Assigned Waiter Identifier")]
         public Guid? AssignedWaiterId { get; set; }
 

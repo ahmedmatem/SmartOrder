@@ -12,7 +12,7 @@ using SmartOrder.Data;
 namespace SmartOrder.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250130101900_InitialMigration")]
+    [Migration("20250225074530_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace SmartOrder.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -215,7 +215,7 @@ namespace SmartOrder.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<Guid>("VenueId")
+                    b.Property<Guid?>("VenueId")
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Unique identifier of the site user/staff participate in.");
 
@@ -282,10 +282,6 @@ namespace SmartOrder.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Optional image Url for the menu item.");
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit")
-                        .HasComment("Indicator of the item availability.");
-
                     b.Property<Guid>("MenuCategoryId")
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Item Category Identifier");
@@ -293,10 +289,6 @@ namespace SmartOrder.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)")
                         .HasComment("The price of the item.");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int")
-                        .HasComment("Quantity or portion size (e.g., grams, millilitres, pieces).");
 
                     b.Property<string>("Tags")
                         .IsRequired()
@@ -323,7 +315,12 @@ namespace SmartOrder.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Order Identifier");
 
-                    b.Property<int>("OrderStatus")
+                    b.Property<Guid?>("AssignedWaiterId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Assigned Waiter Identifier");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int")
                         .HasComment("Status of the order {e.g., Pending, Completed, Cancelled, …}");
 
@@ -332,6 +329,8 @@ namespace SmartOrder.Data.Migrations
                         .HasComment("Order table Identifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssignedWaiterId");
 
                     b.HasIndex("TableId");
 
@@ -345,11 +344,13 @@ namespace SmartOrder.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Order item Identifier");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasComment("Item name.");
+                    b.Property<bool>("IsServed")
+                        .HasColumnType("bit")
+                        .HasComment("Is item served by waiter");
+
+                    b.Property<Guid>("MenuItemId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Menu Item Identifier");
 
                     b.Property<string>("Notes")
                         .IsRequired()
@@ -364,11 +365,9 @@ namespace SmartOrder.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Quantity of the item ordered.");
 
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18, 2)")
-                        .HasComment("Price of a single unit of the item.");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("MenuItemId");
 
                     b.HasIndex("OrderId");
 
@@ -491,9 +490,7 @@ namespace SmartOrder.Data.Migrations
                 {
                     b.HasOne("SmartOrder.Data.Models.Venue", "Venue")
                         .WithMany("Employees")
-                        .HasForeignKey("VenueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VenueId");
 
                     b.Navigation("Venue");
                 });
@@ -522,22 +519,38 @@ namespace SmartOrder.Data.Migrations
 
             modelBuilder.Entity("SmartOrder.Data.Models.Order", b =>
                 {
+                    b.HasOne("SmartOrder.Data.Models.ApplicationUser", "AssignedWaiter")
+                        .WithMany("AssignedOrders")
+                        .HasForeignKey("AssignedWaiterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SmartOrder.Data.Models.Table", "Table")
                         .WithMany("Orders")
                         .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AssignedWaiter");
+
                     b.Navigation("Table");
                 });
 
             modelBuilder.Entity("SmartOrder.Data.Models.OrderItem", b =>
                 {
+                    b.HasOne("SmartOrder.Data.Models.MenuItem", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("SmartOrder.Data.Models.Order", "Order")
                         .WithMany("Items")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("MenuItem");
 
                     b.Navigation("Order");
                 });
@@ -551,6 +564,11 @@ namespace SmartOrder.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Venue");
+                });
+
+            modelBuilder.Entity("SmartOrder.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("AssignedOrders");
                 });
 
             modelBuilder.Entity("SmartOrder.Data.Models.MenuCategory", b =>

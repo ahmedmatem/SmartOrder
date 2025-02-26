@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace SmartOrder.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -14,11 +14,6 @@ namespace SmartOrder.Web.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

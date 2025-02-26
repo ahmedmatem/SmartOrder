@@ -1,0 +1,43 @@
+﻿<div class="container mt-4">
+    <h2 class="text-center">Manager Dashboard</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Orders</h5>
+                    <p class="card-text">Manage and track restaurant orders.</p>
+                    <a asp-action="Orders" class="btn btn-primary">View Orders</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Staff</h5>
+                    <p class="card-text">View and manage restaurant staff.</p>
+                    <a asp-action="Staff" class="btn btn-primary">View Staff</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tables</h5>
+                    <p class="card-text">View and manage restaurant tables.</p>
+                    <a asp-controller="Table" asp-action="Index" class="btn btn-primary">View Tables</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Report</h5>
+                    <p class="card-text">View restaurant sales report.</p>
+                    <a asp-controller="Report" asp-action="Sales" class="btn btn-primary">View Report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

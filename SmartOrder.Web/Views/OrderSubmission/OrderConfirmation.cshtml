@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Order Confirmation";
+    string token = ViewBag.Token;
+}
+
+<div class="container text-center mt-5">
+    <h2 class="text-success">✅ Your order has been placed successfully!</h2>
+    <p class="mt-3">Thank you for your order. A waiter will bring your items shortly.</p>
+
+    <a href="@Url.Action("Index", "MenuItem", new { token = token })" class="btn btn-primary mt-3">
+        🍽 Back to Menu
+    </a>
+</div>
+

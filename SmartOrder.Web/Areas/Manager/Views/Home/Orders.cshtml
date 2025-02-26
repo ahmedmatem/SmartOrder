@@ -1,0 +1,30 @@
+﻿@using SmartOrder.Web.ViewModels.Order
+@model IEnumerable<OrderListViewModel>
+
+<h2 class="mb-4">Orders Overview</h2>
+@if (!Model.Any())
+{
+    <p>No orders available.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Table Number</th>
+                <th>Status</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.TableNumber</td>
+                    <td>@order.Status</td>
+                    <td>@order.TotalPrice.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

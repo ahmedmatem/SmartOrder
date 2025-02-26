@@ -12,15 +12,15 @@ using SmartOrder.Data;
 namespace SmartOrder.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250211154450_UpdateOrderAndOrderItem")]
-    partial class UpdateOrderAndOrderItem
+    [Migration("20250225074609_SeedDb")]
+    partial class SeedDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -55,19 +55,19 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e55d5c47-bf6d-44e5-b6a5-e070d5b9301b"),
+                            Id = new Guid("862a4dbf-578f-47c3-bdc6-647fc47f554b"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("1819bf3c-47ba-4fc4-9288-c48d299e3eb2"),
+                            Id = new Guid("16ec6ea3-9373-427d-b286-394ef4c6a9eb"),
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = new Guid("51353c58-f8e9-4287-9362-31812572498f"),
+                            Id = new Guid("5f81af5c-f2f0-4a57-9f14-60c1261054fb"),
                             Name = "Waiter",
                             NormalizedName = "WAITER"
                         });
@@ -159,38 +159,38 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("14836c4b-7428-423e-9026-3c3691705c3d"),
-                            RoleId = new Guid("e55d5c47-bf6d-44e5-b6a5-e070d5b9301b")
+                            UserId = new Guid("3c935a53-fa3f-4027-b0b8-f6801bb139ff"),
+                            RoleId = new Guid("862a4dbf-578f-47c3-bdc6-647fc47f554b")
                         },
                         new
                         {
-                            UserId = new Guid("ec848116-c864-4e70-8b11-ee669828d593"),
-                            RoleId = new Guid("51353c58-f8e9-4287-9362-31812572498f")
+                            UserId = new Guid("c05ca829-7ea2-423f-b640-65c7c048ae01"),
+                            RoleId = new Guid("5f81af5c-f2f0-4a57-9f14-60c1261054fb")
                         },
                         new
                         {
-                            UserId = new Guid("da26ba70-ed7f-4d2b-bcb9-f374d81f236d"),
-                            RoleId = new Guid("51353c58-f8e9-4287-9362-31812572498f")
+                            UserId = new Guid("e7c59aa2-2123-4806-90b8-4375ac71bc2a"),
+                            RoleId = new Guid("5f81af5c-f2f0-4a57-9f14-60c1261054fb")
                         },
                         new
                         {
-                            UserId = new Guid("7541d6ad-8822-4e30-8d7d-347b5ab4cd5c"),
-                            RoleId = new Guid("51353c58-f8e9-4287-9362-31812572498f")
+                            UserId = new Guid("5d959c9a-7e42-433c-bb04-1e49eedf6d81"),
+                            RoleId = new Guid("5f81af5c-f2f0-4a57-9f14-60c1261054fb")
                         },
                         new
                         {
-                            UserId = new Guid("49f1e679-1c8d-4313-8e3f-1ce11aa2b0ad"),
-                            RoleId = new Guid("1819bf3c-47ba-4fc4-9288-c48d299e3eb2")
+                            UserId = new Guid("19dd8116-4813-4cb0-b0ef-2266c7473c9a"),
+                            RoleId = new Guid("16ec6ea3-9373-427d-b286-394ef4c6a9eb")
                         },
                         new
                         {
-                            UserId = new Guid("edf6eadd-ff1f-4e27-a0e1-65cde764e76b"),
-                            RoleId = new Guid("1819bf3c-47ba-4fc4-9288-c48d299e3eb2")
+                            UserId = new Guid("3ba99fdf-87fb-46bf-8e9f-f11d01853cde"),
+                            RoleId = new Guid("16ec6ea3-9373-427d-b286-394ef4c6a9eb")
                         },
                         new
                         {
-                            UserId = new Guid("19f45105-e07f-4e15-a0f0-d98c2206f7fc"),
-                            RoleId = new Guid("1819bf3c-47ba-4fc4-9288-c48d299e3eb2")
+                            UserId = new Guid("b73befbc-e44a-494b-9245-7e9750dc23a6"),
+                            RoleId = new Guid("16ec6ea3-9373-427d-b286-394ef4c6a9eb")
                         });
                 });
 
@@ -293,119 +293,126 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec848116-c864-4e70-8b11-ee669828d593"),
+                            Id = new Guid("c05ca829-7ea2-423f-b640-65c7c048ae01"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c4d8b61-8faf-4a40-bb21-e8e03bd1377f",
+                            ConcurrencyStamp = "1d55ff44-0388-4fd2-a06c-14cefa85388b",
                             Email = "waiter1@mail.com",
                             EmailConfirmed = false,
                             FullName = "First Waiter",
                             LockoutEnabled = false,
                             NormalizedEmail = "waiter1@mail.com",
                             NormalizedUserName = "waiter1@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEhYD3VjgqqvxYwlM4GvufVjqrB7y1vBDIVpfU0siLBv4VaIJVNtBA/PaPinUU3M4Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENKt69Qg+2+K+xaAS392n8pVMZO6av9/gE1M8DE7VX+trVATdP+VSBxlq7d+bbrxRw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "f69f971b-bbe4-475a-b9fe-afce9ec3f58b",
                             TwoFactorEnabled = false,
                             UserName = "waiter1@mail.com",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("da26ba70-ed7f-4d2b-bcb9-f374d81f236d"),
+                            Id = new Guid("e7c59aa2-2123-4806-90b8-4375ac71bc2a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "40eb630e-645a-42a4-986f-27f990e9b6a7",
+                            ConcurrencyStamp = "a743ce9b-b6ba-4742-a82d-dd0af49645f2",
                             Email = "waiter2@mail.com",
                             EmailConfirmed = false,
                             FullName = "Second Waiter",
                             LockoutEnabled = false,
                             NormalizedEmail = "waiter2@mail.com",
                             NormalizedUserName = "waiter2@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPdYSGVVOK9Y3aci9TI5ZOcXjsTx158iVkLhkFRkCRTpQVy/UIi27o4D1tcYja2OPQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENiBMO7IDZgvsgFzj/89kj5thB/hWw/OZyV3fHbCLSP3dMzETOpuwu7wxRvv6o7b+w==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "28399002-fbf3-4518-a6a2-1d058e26dab9",
                             TwoFactorEnabled = false,
                             UserName = "waiter2@mail.com",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("7541d6ad-8822-4e30-8d7d-347b5ab4cd5c"),
+                            Id = new Guid("5d959c9a-7e42-433c-bb04-1e49eedf6d81"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a125d2a7-ab8a-464e-bb50-b25a69f69f73",
+                            ConcurrencyStamp = "97c41630-e610-45aa-8b8f-f2ce71ff727b",
                             Email = "waiter3@mail.com",
                             EmailConfirmed = false,
                             FullName = "Third Waiter",
                             LockoutEnabled = false,
                             NormalizedEmail = "waiter3@mail.com",
                             NormalizedUserName = "waiter3@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI0cYYsH4pYqC1wwSb+YwqFn/idnRL7QQa1tmrT5AalmUASi+Tp6gQOmFcbkMVpnUw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAk505+mEvEQHXhyQGZEWo4o4pyn07iVl4dieWfiVjO25gK7fhBSGBUNCTG1psnanA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "46093405-fef3-4253-a29c-25bbb7462cfa",
                             TwoFactorEnabled = false,
                             UserName = "waiter3@mail.com",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("49f1e679-1c8d-4313-8e3f-1ce11aa2b0ad"),
+                            Id = new Guid("19dd8116-4813-4cb0-b0ef-2266c7473c9a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "38872e6b-797b-4dd1-941a-6365675a1c8c",
+                            ConcurrencyStamp = "87c2ad98-ce77-4ae6-b25c-a3626b732808",
                             Email = "manager1@mail.com",
                             EmailConfirmed = false,
                             FullName = "First Manager",
                             LockoutEnabled = false,
                             NormalizedEmail = "manager1@mail.com",
                             NormalizedUserName = "manager1@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAELTegNcjTFCoZA3pqrf4LeM8aPeKiRYFSoQNOcgpQ//PktxZJSS+jax5pQlF3paHkg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMZ5bXFrZGMW0Xiy/l8doZiz8ymJG/SwbU9CakKSvZM96/qx5KKyagEoJJ7dUoH67w==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "2572c8d3-dd0e-458c-bd93-a7ac972cba9c",
                             TwoFactorEnabled = false,
                             UserName = "manager1@mail.com",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("edf6eadd-ff1f-4e27-a0e1-65cde764e76b"),
+                            Id = new Guid("3ba99fdf-87fb-46bf-8e9f-f11d01853cde"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "21d8e310-984e-4659-8229-4e883593e611",
+                            ConcurrencyStamp = "18aea7e4-e83a-4a88-a9be-8fa3526665d0",
                             Email = "manager2@mail.com",
                             EmailConfirmed = false,
                             FullName = "Second Manager",
                             LockoutEnabled = false,
                             NormalizedEmail = "manager2@mail.com",
                             NormalizedUserName = "manager2@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAULzst6xSAy17TQ5L2aXRVqBKijF+00OZQ30/esPzHNqbwrJXMXz5t0eyPh4rKAEw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAA3chLtzjqmB9SgRS2hP7PFLDUw39QjTQUWskbuS9s+1he35ruocF8wB5TQkig7Hw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "9964cdc4-4916-485c-95a7-16785bf10432",
                             TwoFactorEnabled = false,
                             UserName = "manager2@mail.com",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("19f45105-e07f-4e15-a0f0-d98c2206f7fc"),
+                            Id = new Guid("b73befbc-e44a-494b-9245-7e9750dc23a6"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a06b24cc-30ee-4371-8c67-9312763baed2",
+                            ConcurrencyStamp = "f8a1b826-1dd6-4195-8e20-d32645cabfc0",
                             Email = "manager3@mail.com",
                             EmailConfirmed = false,
                             FullName = "Third Manager",
                             LockoutEnabled = false,
                             NormalizedEmail = "manager3@mail.com",
                             NormalizedUserName = "manager3@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH3h4rqx00Llze77Z/nCTQSz1AzrMhncCzC/vQ4ICSAvClAPFDGTLvKgLSe12dGqJg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG6xDO7gOuYSB/Ya3PUc5esJZEgidubtwWsk0/qF1GsAyxxw337GzjuFCrqz7//YXQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "ca80806e-929e-4941-9332-ba614945a9ce",
                             TwoFactorEnabled = false,
                             UserName = "manager3@mail.com",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("14836c4b-7428-423e-9026-3c3691705c3d"),
+                            Id = new Guid("3c935a53-fa3f-4027-b0b8-f6801bb139ff"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e06daace-e98d-46a6-adbd-bc12ac54f8b6",
+                            ConcurrencyStamp = "2c32c72a-a92b-40d8-8196-4b0fe4816af9",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FullName = "Great Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@mail.com",
                             NormalizedUserName = "admin@mail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJ2wu0G1mJS6pwdyjrhudDivUjjPw1EQURRR7CrbpcZdRKGkbpBTK3Pf/WG9TwhjoQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGhZAM3j4oHc2ZldaIOW0CmfHsou8uBqOiPBACrOHahMAJ3KZ52eVRrC2JwZsAMkeg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "efc0d52e-b56f-42e0-865f-6fd24640b14c",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -443,66 +450,66 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("057f311f-45da-4027-96a4-ffb7536c5813"),
+                            Id = new Guid("2b8f2d21-c406-496e-9527-ad81e0ccc3a4"),
                             Description = "Вкусни хапки за начало",
                             Title = "Предястия",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("334d5e72-44da-4b8d-8574-e8df96619840"),
+                            Id = new Guid("00c1d4c4-d659-4d46-8a96-3b87368a8cdf"),
                             Description = "Голямо разнообразие от ястия",
                             Title = "Основни",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("7bd534cb-ab57-49fb-b704-8e7068c737da"),
+                            Id = new Guid("2b093ff6-ad2a-4eba-863c-1b3ed8f1307d"),
                             Description = "Сладки изкушения",
                             Title = "Десерти",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("b49953cf-4386-49a0-bdd3-21c2a26a8f6c"),
+                            Id = new Guid("baffdc08-a4a7-4f81-924d-12ee711bb070"),
                             Description = "Богато разнообразие от ароматни кафета и освежаващи напитки",
                             Title = "Кафе и напитки",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("b08e0f41-ae28-45d9-954e-8bdfda1ad33a"),
+                            Id = new Guid("6f50b246-508f-4393-a131-d7671424c58a"),
                             Description = "Леко и бързо хапване",
                             Title = "Закуски",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("b7f141b8-94a0-432d-96f4-e6b4a7f550c2"),
+                            Id = new Guid("e70fd979-6bd8-462c-a4ef-fcc19ecd18dc"),
                             Description = "Домашно приготвени десерти",
                             Title = "Десерти",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("a5acdabb-cc77-49d0-bb15-07b4d9c07a30"),
+                            Id = new Guid("fd0bd05f-9db6-403e-9650-d3cd8b1e2ff3"),
                             Description = "Голямо разнообразие от алкохолни изкушения",
                             Title = "Алкохолни напитки",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("3ed862ba-4768-470a-b124-b42bab9fdfe6"),
+                            Id = new Guid("32676ebc-ebbe-4466-a2e8-9e000c0487c2"),
                             Description = "Напитки без алкохол",
                             Title = "Безалкохолни напитки",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("9146de41-52bb-49f9-bf73-0ad7647f75ff"),
+                            Id = new Guid("7c9d5656-5716-4b51-9162-a686bb9c4dd8"),
                             Description = "Съпроводете напитките си с избор от лесни закуски",
                             Title = "Снаксове",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         });
                 });
 
@@ -524,10 +531,6 @@ namespace SmartOrder.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Optional image Url for the menu item.");
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit")
-                        .HasComment("Indicator of the item availability.");
-
                     b.Property<Guid>("MenuCategoryId")
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Item Category Identifier");
@@ -535,10 +538,6 @@ namespace SmartOrder.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)")
                         .HasComment("The price of the item.");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int")
-                        .HasComment("Quantity or portion size (e.g., grams, millilitres, pieces).");
 
                     b.Property<string>("Tags")
                         .IsRequired()
@@ -560,253 +559,211 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9758622c-e453-42e2-8753-3552dd50def8"),
+                            Id = new Guid("4ed8e3fd-3d36-4856-8c2e-742e52fa47d6"),
                             Description = "Класическа българска салата с домати, краставици, лук, сирене и зехтин",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/0/09/Chopska.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("057f311f-45da-4027-96a4-ffb7536c5813"),
+                            MenuCategoryId = new Guid("2b8f2d21-c406-496e-9527-ad81e0ccc3a4"),
                             Price = 7.50m,
-                            Quantity = 1,
                             Tags = "Салата, Вегетарианско",
                             Title = "Шопска салата"
                         },
                         new
                         {
-                            Id = new Guid("755b8744-9d6b-4747-acde-910aadec707e"),
+                            Id = new Guid("413f3a4d-1e6c-4890-9c3b-7de120dfcf42"),
                             Description = "Печени гъби с чесън, мащерка и зехтин",
                             ImageUrl = "https://gotvach.bg/files/1200x800/pechurki-maslo-furna.webp",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("057f311f-45da-4027-96a4-ffb7536c5813"),
+                            MenuCategoryId = new Guid("2b8f2d21-c406-496e-9527-ad81e0ccc3a4"),
                             Price = 6.50m,
-                            Quantity = 1,
                             Tags = "Гъби, Вегетарианско",
                             Title = "Гъби на фурна"
                         },
                         new
                         {
-                            Id = new Guid("5c2d115c-f3c8-4a78-818f-4a9dce0b32e3"),
+                            Id = new Guid("150e9841-fc50-4969-97be-442225c4295f"),
                             Description = "Запечено свинско месо с картофи и подправки",
                             ImageUrl = "https://matekitchen.com/wp-content/uploads/2023/12/svinsko-s-kartofi.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("334d5e72-44da-4b8d-8574-e8df96619840"),
+                            MenuCategoryId = new Guid("00c1d4c4-d659-4d46-8a96-3b87368a8cdf"),
                             Price = 14.99m,
-                            Quantity = 1,
                             Tags = "Месо, Традиционно",
                             Title = "Свинско с картофи"
                         },
                         new
                         {
-                            Id = new Guid("78013a0e-63ac-45a5-a17b-5e159033d26b"),
+                            Id = new Guid("b3ece1b8-afc1-4823-b253-b3d18b306e38"),
                             Description = "Пилешко филе с ориз и зеленчуци",
                             ImageUrl = "https://lysp.eu/wp-content/uploads/2022/04/pile-s-oriz-big-1200x675.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("334d5e72-44da-4b8d-8574-e8df96619840"),
+                            MenuCategoryId = new Guid("00c1d4c4-d659-4d46-8a96-3b87368a8cdf"),
                             Price = 12.50m,
-                            Quantity = 1,
                             Tags = "Пиле, Лесно",
                             Title = "Пиле с ориз"
                         },
                         new
                         {
-                            Id = new Guid("5b655321-9076-4bdf-9d55-b6d238058cea"),
+                            Id = new Guid("b5c1a145-0a2a-4fc1-a623-6f1d57fe67f4"),
                             Description = "Пъстърва на скара с лимон и зехтин",
                             ImageUrl = "https://matekitchen.com/wp-content/uploads/2019/09/CG012b_pystyrva-na-skara-s-limon-shalot-i-bilki.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("334d5e72-44da-4b8d-8574-e8df96619840"),
+                            MenuCategoryId = new Guid("00c1d4c4-d659-4d46-8a96-3b87368a8cdf"),
                             Price = 16.00m,
-                            Quantity = 1,
                             Tags = "Риба, Здравословно",
                             Title = "Риба на скара"
                         },
                         new
                         {
-                            Id = new Guid("7ed5bb29-e16d-4e99-9dd2-54b3ae8b1167"),
+                            Id = new Guid("5f2d67cb-4698-485a-a84c-7c1cf8b1aa29"),
                             Description = "Шоколадова торта с ванилов крем и горски плодове",
                             ImageUrl = "https://sire-media-foxbg.fichub.com/24k_bg/clip-main/643955.1200x675.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("7bd534cb-ab57-49fb-b704-8e7068c737da"),
+                            MenuCategoryId = new Guid("2b093ff6-ad2a-4eba-863c-1b3ed8f1307d"),
                             Price = 6.99m,
-                            Quantity = 1,
                             Tags = "Торта, Шоколад",
                             Title = "Шоколадова торта"
                         },
                         new
                         {
-                            Id = new Guid("2e795e15-57eb-4968-93cc-7d252cd05d78"),
+                            Id = new Guid("a9d3da0a-55d9-41d0-8716-ed92cdfe9b71"),
                             Description = "Класически крем карамел с карамелен сос",
                             ImageUrl = "https://www.kulinarno-joana.com/wp-content/uploads/2011/05/DSC1671-2.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("7bd534cb-ab57-49fb-b704-8e7068c737da"),
+                            MenuCategoryId = new Guid("2b093ff6-ad2a-4eba-863c-1b3ed8f1307d"),
                             Price = 5.50m,
-                            Quantity = 1,
                             Tags = "Десерт, Крем",
                             Title = "Крем карамел"
                         },
                         new
                         {
-                            Id = new Guid("5de66ef7-1ee4-4aa5-b969-38bf8578a805"),
+                            Id = new Guid("767ca197-f4aa-45b4-baa0-5348d4f3709a"),
                             Description = "Палачинки с пълнозърнесто брашно, мед и счукани орехи",
                             ImageUrl = "https://www.bonapeti.bg/uploads/posts/post315.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("7bd534cb-ab57-49fb-b704-8e7068c737da"),
+                            MenuCategoryId = new Guid("2b093ff6-ad2a-4eba-863c-1b3ed8f1307d"),
                             Price = 7.00m,
-                            Quantity = 1,
                             Tags = "Палачинки, Сладко",
                             Title = "Палачинки с мед и орехи"
                         },
                         new
                         {
-                            Id = new Guid("e889bccb-663d-4094-8947-e568ced530ae"),
+                            Id = new Guid("0b72bf0d-f3e3-4b2f-b2d3-46504d2ae863"),
                             Description = "Класическо еспресо с богат вкус",
                             ImageUrl = "https://cdn4.focus.bg/fakti/photos/big/83f/kakva-e-razlikata-mejdu-espreso-i-obiknoveno-kafe-1.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b49953cf-4386-49a0-bdd3-21c2a26a8f6c"),
+                            MenuCategoryId = new Guid("baffdc08-a4a7-4f81-924d-12ee711bb070"),
                             Price = 2.50m,
-                            Quantity = 1,
                             Tags = "Кафе, Класика",
                             Title = "Еспресо"
                         },
                         new
                         {
-                            Id = new Guid("c4556933-0de1-4435-8941-efd671a9abba"),
+                            Id = new Guid("1716492d-6c3e-4dd6-a6e5-e97f90330794"),
                             Description = "Капучино с кремообразна пяна",
                             ImageUrl = "https://instantpot.bg/wp-content/uploads/instantpot-recepta-capuccino.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b49953cf-4386-49a0-bdd3-21c2a26a8f6c"),
+                            MenuCategoryId = new Guid("baffdc08-a4a7-4f81-924d-12ee711bb070"),
                             Price = 3.50m,
-                            Quantity = 1,
                             Tags = "Кафе, Мляко",
                             Title = "Капучино"
                         },
                         new
                         {
-                            Id = new Guid("a26083b0-c893-413a-9870-e8540c5894e1"),
+                            Id = new Guid("abe2c759-8c25-4e05-b655-641f413dea68"),
                             Description = "Избор от зелен, черен и плодов чай",
                             ImageUrl = "https://natural.bg/wp-content/uploads/2022/10/%D0%B1%D0%B8%D0%BB%D0%BA%D0%BE%D0%B2-%D1%87%D0%B0%D0%B9-%D1%81%D1%80%D0%B5%D1%89%D1%83-%D1%81%D1%82%D0%B0%D1%80%D0%B0%D0%B5%D0%B5%D0%BD%D0%B5-1600x1068.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b49953cf-4386-49a0-bdd3-21c2a26a8f6c"),
+                            MenuCategoryId = new Guid("baffdc08-a4a7-4f81-924d-12ee711bb070"),
                             Price = 2.00m,
-                            Quantity = 1,
                             Tags = "Чай, Без кофеин",
                             Title = "Чай"
                         },
                         new
                         {
-                            Id = new Guid("11af540e-8852-42f4-9088-1dc83e3d3c4b"),
+                            Id = new Guid("88488784-518f-48c2-9929-b7136cd78044"),
                             Description = "Сандвич с прошуто, сирене и рукола",
                             ImageUrl = "https://matekitchen.com/wp-content/uploads/2021/01/sandvich-proshuto-motsarela.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b08e0f41-ae28-45d9-954e-8bdfda1ad33a"),
+                            MenuCategoryId = new Guid("6f50b246-508f-4393-a131-d7671424c58a"),
                             Price = 6.50m,
-                            Quantity = 1,
                             Tags = "Сандвич, Леко",
                             Title = "Сандвич с прошуто"
                         },
                         new
                         {
-                            Id = new Guid("59f82d37-25ca-46ee-a0b9-8e66899826d8"),
+                            Id = new Guid("e7c33eb1-12c8-4c53-a498-9230b61f2e06"),
                             Description = "Домашен кекс с шоколадови парченца",
                             ImageUrl = "https://gotvach.bg/files/1200x800/parcheta-keks-pudra.webp",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b08e0f41-ae28-45d9-954e-8bdfda1ad33a"),
+                            MenuCategoryId = new Guid("6f50b246-508f-4393-a131-d7671424c58a"),
                             Price = 3.00m,
-                            Quantity = 1,
                             Tags = "Кекс, Сладко",
                             Title = "Кекс"
                         },
                         new
                         {
-                            Id = new Guid("48449572-9b0c-499a-a230-b802be7154e0"),
+                            Id = new Guid("ebc7fd70-fb87-4fda-8edb-67cc9117d579"),
                             Description = "Шоколадова торта с ванилов крем",
                             ImageUrl = "https://sire-media-foxbg.fichub.com/24k_bg/clip-main/643955.1200x675.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b7f141b8-94a0-432d-96f4-e6b4a7f550c2"),
+                            MenuCategoryId = new Guid("e70fd979-6bd8-462c-a4ef-fcc19ecd18dc"),
                             Price = 5.50m,
-                            Quantity = 1,
                             Tags = "Торта, Шоколад",
                             Title = "Шоколадова торта"
                         },
                         new
                         {
-                            Id = new Guid("58947931-f1ef-4ec1-a99b-d6f35db5fd77"),
+                            Id = new Guid("b5880533-8623-4044-8bdd-62dae306e331"),
                             Description = "Домашен сладолед с избор от вкусове",
                             ImageUrl = "https://www.lunchbox.eu/wp-content/uploads/2017/06/20170616-DSC_5625.jpg",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("b7f141b8-94a0-432d-96f4-e6b4a7f550c2"),
+                            MenuCategoryId = new Guid("e70fd979-6bd8-462c-a4ef-fcc19ecd18dc"),
                             Price = 4.00m,
-                            Quantity = 1,
                             Tags = "Сладолед, Освежаващо",
                             Title = "Сладолед"
                         },
                         new
                         {
-                            Id = new Guid("80b414bf-a99a-4fb9-8a67-dd314b8fa6ff"),
+                            Id = new Guid("0d6dc994-aac0-4f83-abc8-ee3706bf758b"),
                             Description = "Българско червено вино, 150 мл",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("a5acdabb-cc77-49d0-bb15-07b4d9c07a30"),
+                            MenuCategoryId = new Guid("fd0bd05f-9db6-403e-9650-d3cd8b1e2ff3"),
                             Price = 5.00m,
-                            Quantity = 1,
                             Tags = "Вино, Алкохол",
                             Title = "Червено вино"
                         },
                         new
                         {
-                            Id = new Guid("1a6ba324-6e49-454c-97cd-3c3fc55123c2"),
+                            Id = new Guid("0ac00a8e-5ff1-4f47-b2fa-103be1f74a26"),
                             Description = "Класически коктейл с текила и лайм",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("a5acdabb-cc77-49d0-bb15-07b4d9c07a30"),
+                            MenuCategoryId = new Guid("fd0bd05f-9db6-403e-9650-d3cd8b1e2ff3"),
                             Price = 8.00m,
-                            Quantity = 1,
                             Tags = "Коктейл, Алкохол",
                             Title = "Маргарита"
                         },
                         new
                         {
-                            Id = new Guid("35cd2ca6-b84d-4e03-baca-fcca8f63dd24"),
+                            Id = new Guid("94ce05cb-f697-4b03-b724-d466417d70ec"),
                             Description = "Пресно изстискан сок от портокал",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("3ed862ba-4768-470a-b124-b42bab9fdfe6"),
+                            MenuCategoryId = new Guid("32676ebc-ebbe-4466-a2e8-9e000c0487c2"),
                             Price = 3.50m,
-                            Quantity = 1,
                             Tags = "Сок, Безалкохолно",
                             Title = "Сок от портокал"
                         },
                         new
                         {
-                            Id = new Guid("1e27e8b2-71f1-4f01-9b45-3866782117b6"),
+                            Id = new Guid("ef5c6936-4c78-4536-9f44-b144352c7623"),
                             Description = "Домашна лимонада с мента и лимон",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("3ed862ba-4768-470a-b124-b42bab9fdfe6"),
+                            MenuCategoryId = new Guid("32676ebc-ebbe-4466-a2e8-9e000c0487c2"),
                             Price = 4.00m,
-                            Quantity = 1,
                             Tags = "Лимонада, Освежаващо",
                             Title = "Лимонада"
                         },
                         new
                         {
-                            Id = new Guid("149a8c42-ebfa-4819-904a-3f5c6598f29b"),
+                            Id = new Guid("1534dda9-dba6-423f-bb01-07cd42c71fed"),
                             Description = "Хрупкав чипс със сол",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("9146de41-52bb-49f9-bf73-0ad7647f75ff"),
+                            MenuCategoryId = new Guid("7c9d5656-5716-4b51-9162-a686bb9c4dd8"),
                             Price = 2.00m,
-                            Quantity = 1,
                             Tags = "Чипс, Леко",
                             Title = "Чипс"
                         },
                         new
                         {
-                            Id = new Guid("ef91bdc7-357b-4cfd-9eec-f81165171697"),
+                            Id = new Guid("f29f965a-e5ca-4652-b8c9-ad7851a64367"),
                             Description = "Сирене и месни деликатеси",
                             ImageUrl = "",
-                            IsAvailable = true,
-                            MenuCategoryId = new Guid("9146de41-52bb-49f9-bf73-0ad7647f75ff"),
+                            MenuCategoryId = new Guid("7c9d5656-5716-4b51-9162-a686bb9c4dd8"),
                             Price = 10.00m,
-                            Quantity = 1,
                             Tags = "Сирене, Месо",
                             Title = "Плато с месо и сирена"
                         });
@@ -907,66 +864,66 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5fb683d0-6dd9-4e21-a0f3-b86a1758c8b5"),
+                            Id = new Guid("0c4b8f6d-3ff8-4bc1-ad81-af6f6bbaa0a4"),
                             TableNumber = 1,
-                            Token = "e9e082a1-3951-449b-96e8-1b7a80f97a7d",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            Token = "3cb9d411-e2d5-4d8f-a424-1e14c4d2c84e",
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("b80b7351-d936-4ce5-be7d-cc0ae1ce4cc2"),
+                            Id = new Guid("b70f8c02-3d62-4fd5-9910-bf7af85cb154"),
                             TableNumber = 2,
-                            Token = "9a1ca452-97c6-4936-923b-473d847d4d15",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            Token = "11b04407-018d-4365-9269-ad6324956b27",
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("3c549941-df9f-4e85-bb55-4101752c307a"),
+                            Id = new Guid("73d095f0-f62b-46fe-863d-4bf8c0cb0423"),
                             TableNumber = 3,
-                            Token = "e2701b57-aade-4246-92d2-8bb44ec63a8c",
-                            VenueId = new Guid("18234241-24a6-45ab-a595-3241b2441ddc")
+                            Token = "eaa73804-4d39-4db4-b055-a834e2e56ab7",
+                            VenueId = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439")
                         },
                         new
                         {
-                            Id = new Guid("b2e54e77-8f49-4c12-86e9-6d2469f5778d"),
+                            Id = new Guid("531193df-9074-403d-9db7-172271a08574"),
                             TableNumber = 1,
-                            Token = "ee12b6a9-d0e1-4018-bcbf-0e75d64e8ca4",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            Token = "b1f5fede-12d7-4b66-8f8d-1289cd8afcac",
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("eeba6c76-219c-45f4-80e2-d279822958ba"),
+                            Id = new Guid("76fb1a1f-278a-497b-89e7-b30df3ca6c26"),
                             TableNumber = 2,
-                            Token = "400bb710-32f0-4e64-8501-621f305ec448",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            Token = "2167de98-341f-47e0-9d9e-430d043471a9",
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("d30e3a45-b456-4f17-8983-7c640e59f00e"),
+                            Id = new Guid("7594682c-d06f-429f-9c88-8b7ac72678e0"),
                             TableNumber = 3,
-                            Token = "48a58ead-39f8-49dc-b6fb-5b86f4151915",
-                            VenueId = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0")
+                            Token = "54ab4b84-cb97-4bd6-a84f-4f4137661b63",
+                            VenueId = new Guid("962491b7-4643-46f9-bde3-cd4773fec737")
                         },
                         new
                         {
-                            Id = new Guid("a85440af-23c5-45b8-8a94-a46deea09e00"),
+                            Id = new Guid("9183a517-c0ee-42be-9209-c01c20754e2f"),
                             TableNumber = 1,
-                            Token = "7658b410-d7b2-4ed8-af42-b4609575d7fb",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            Token = "5ba60774-dda4-46ad-9753-0480608ca78c",
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("b326e830-b028-4150-88e2-fefba1e7d81c"),
+                            Id = new Guid("01ed4cad-b290-4b76-95a6-182a0bab682e"),
                             TableNumber = 2,
-                            Token = "8e6cf5cf-ad2e-4675-9b61-05bf336d3435",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            Token = "c2c04659-c756-4438-a4c6-ffebac448053",
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         },
                         new
                         {
-                            Id = new Guid("6584dd8d-122c-47d9-9d95-975e8d4111fd"),
+                            Id = new Guid("ec4fd383-6d5c-4d07-aeec-2d20f86578fa"),
                             TableNumber = 3,
-                            Token = "524156f9-3f0b-400e-bb16-dc7d8f5d8ea6",
-                            VenueId = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee")
+                            Token = "80fdb8cc-fec2-42f1-b747-f4ac0ca67d4f",
+                            VenueId = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df")
                         });
                 });
 
@@ -1006,25 +963,25 @@ namespace SmartOrder.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("18234241-24a6-45ab-a595-3241b2441ddc"),
+                            Id = new Guid("e064b0a4-a62d-41c2-a432-706ae8ff7439"),
                             City = "София",
-                            CreatedOn = new DateTime(2025, 2, 11, 15, 44, 49, 202, DateTimeKind.Utc).AddTicks(1196),
+                            CreatedOn = new DateTime(2025, 2, 25, 7, 46, 7, 728, DateTimeKind.Utc).AddTicks(3100),
                             Name = "Ресторант Балкан",
                             Type = "Ресторант"
                         },
                         new
                         {
-                            Id = new Guid("c8426c7c-b859-4237-b5aa-83a609d404e0"),
+                            Id = new Guid("962491b7-4643-46f9-bde3-cd4773fec737"),
                             City = "Пловдив",
-                            CreatedOn = new DateTime(2025, 2, 11, 15, 44, 49, 202, DateTimeKind.Utc).AddTicks(1200),
+                            CreatedOn = new DateTime(2025, 2, 25, 7, 46, 7, 728, DateTimeKind.Utc).AddTicks(3105),
                             Name = "Кафе Арома",
                             Type = "Кафене"
                         },
                         new
                         {
-                            Id = new Guid("76efa6d9-0333-4a45-9229-9085f2ebd3ee"),
+                            Id = new Guid("02ab919c-96bc-4cce-a02b-dfc859e3a7df"),
                             City = "Варна",
-                            CreatedOn = new DateTime(2025, 2, 11, 15, 44, 49, 202, DateTimeKind.Utc).AddTicks(1203),
+                            CreatedOn = new DateTime(2025, 2, 25, 7, 46, 7, 728, DateTimeKind.Utc).AddTicks(3122),
                             Name = "Бар Нощ",
                             Type = "Бар"
                         });
@@ -1115,7 +1072,7 @@ namespace SmartOrder.Data.Migrations
             modelBuilder.Entity("SmartOrder.Data.Models.Order", b =>
                 {
                     b.HasOne("SmartOrder.Data.Models.ApplicationUser", "AssignedWaiter")
-                        .WithMany()
+                        .WithMany("AssignedOrders")
                         .HasForeignKey("AssignedWaiterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1136,7 +1093,7 @@ namespace SmartOrder.Data.Migrations
                     b.HasOne("SmartOrder.Data.Models.MenuItem", "MenuItem")
                         .WithMany()
                         .HasForeignKey("MenuItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SmartOrder.Data.Models.Order", "Order")
@@ -1159,6 +1116,11 @@ namespace SmartOrder.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Venue");
+                });
+
+            modelBuilder.Entity("SmartOrder.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("AssignedOrders");
                 });
 
             modelBuilder.Entity("SmartOrder.Data.Models.MenuCategory", b =>

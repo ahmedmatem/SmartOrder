@@ -1,0 +1,56 @@
+﻿@using SmartOrder.Web.ViewModels.User
+@model IEnumerable<UserViewModel>
+@{
+    IEnumerable<string> roles = ViewBag.Roles;
+}
+<h2 class="mb-4">User Management</h2>
+@if (!Model.Any())
+{
+    <p>No users available.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <form asp-action="AssignRole" method="post" class="d-inline">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <select name="roleName" class="form-select d-inline w-auto" onchange="this.form.submit()">
+                                @if (roles.Any())
+                                {
+                                    @foreach (var role in roles)
+                                    {
+                                        <option value="@role" selected="@(user.Role == role ? "selected" : null)">@role</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option disabled>No roles available</option>
+                                }
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Are you sure?');">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

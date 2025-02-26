@@ -1,0 +1,41 @@
+﻿@using SmartOrder.Web.ViewModels.User
+@model IEnumerable<UserViewModel>
+
+<h2 class="mb-4">Staff Management</h2>
+@if (!Model.Any())
+{
+    <p>No staff members available.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var staff in Model)
+            {
+                <tr>
+                    <td>@staff.FullName</td>
+                    <td>@staff.Email</td>
+                    <td>@staff.Role</td>
+                    <td>
+                        <form asp-action="AssignRole" method="post">
+                            <input type="hidden" name="userId" value="@staff.Id" />
+                            <select name="role" class="form-select">
+                                <option value="Waiter">Waiter</option>
+                                <option value="Manager">Manager</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm mt-2">Assign Role</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

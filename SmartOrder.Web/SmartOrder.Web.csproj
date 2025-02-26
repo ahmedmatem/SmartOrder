@@ -9,16 +9,21 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SmartOrder.Common\SmartOrder.Common.csproj" />
     <ProjectReference Include="..\SmartOrder.Data\SmartOrder.Data.csproj" />
+    <ProjectReference Include="..\SmartOrder.Services.Data\SmartOrder.Services.Data.csproj" />
     <ProjectReference Include="..\SmartOrder.Web.Infrastructure\SmartOrder.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SmartOrder.Web.ViewModels\SmartOrder.Web.ViewModels.csproj" />
   </ItemGroup>

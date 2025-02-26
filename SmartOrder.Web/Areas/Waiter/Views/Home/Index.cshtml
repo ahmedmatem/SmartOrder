@@ -1,0 +1,56 @@
+﻿@using SmartOrder.Web.ViewModels.Waiter
+@model SmartOrder.Web.ViewModels.Waiter.WaiterDashboardViewModel
+
+<div class="container mt-4">
+    <h2 class="text-center">Waiter Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Orders</h5>
+                    <p class="card-text">Manage and track restaurant orders.</p>
+
+                    @if (Model.Orders.Any())
+                    {
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Table</th>
+                                    <th>Status</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>@order.TableNumber</td>
+                                        <td>@order.Status</td>
+                                        <td>@order.TotalPrice.ToString("C")</td>
+                                        <td>
+                                            <form asp-action="UpdateStatus" method="post">
+                                                <input type="hidden" name="id" value="@order.Id" />
+                                                <select name="status" class="form-select">
+                                                    <option value="Preparing">Preparing</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-success btn-sm mt-2">Update Status</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No pending orders.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

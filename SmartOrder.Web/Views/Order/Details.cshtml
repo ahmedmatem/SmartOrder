@@ -1,0 +1,32 @@
+﻿@using SmartOrder.Web.ViewModels.Order
+@model OrderDetailsViewModel
+
+<h2 class="mb-4">Order Details</h2>
+<p><strong>Table Number:</strong> @Model.TableNumber</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Assigned Waiter:</strong> @Model.AssignedWaiter</p>
+<p><strong>Total Price:</strong> @Model.TotalPrice.ToString("C")</p>
+
+<h3>Order Items</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.ItemName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@(item.Quantity * item.Price).ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Back to Orders</a>

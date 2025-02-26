@@ -67,7 +67,7 @@ namespace SmartOrder.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "User full name."),
-                    VenueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Unique identifier of the site user/staff participate in."),
+                    VenueId = table.Column<Guid>(type: "uniqueidentifier", nullable: true, comment: "Unique identifier of the site user/staff participate in."),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -90,8 +90,7 @@ namespace SmartOrder.Data.Migrations
                         name: "FK_AspNetUsers_Venues_VenueId",
                         column: x => x.VenueId,
                         principalTable: "Venues",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -228,8 +227,6 @@ namespace SmartOrder.Data.Migrations
                     Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false, comment: "The title of the menu item."),
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false, comment: "The description of the menu item."),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "The price of the item."),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false, comment: "Indicator of the item availability."),
-                    Quantity = table.Column<int>(type: "int", nullable: false, comment: "Quantity or portion size (e.g., grams, millilitres, pieces)."),
                     Tags = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "List of tags describing the item characteristics (e.g., spacy, sweet, vegan)"),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Optional image Url for the menu item.")
                 },
@@ -250,11 +247,18 @@ namespace SmartOrder.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Order Identifier"),
                     TableId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Order table Identifier"),
-                    OrderStatus = table.Column<int>(type: "int", nullable: false, comment: "Status of the order {e.g., Pending, Completed, Cancelled, …}")
+                    Status = table.Column<int>(type: "int", nullable: false, comment: "Status of the order {e.g., Pending, Completed, Cancelled, …}"),
+                    AssignedWaiterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true, comment: "Assigned Waiter Identifier")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_AssignedWaiterId",
+                        column: x => x.AssignedWaiterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Tables_TableId",
                         column: x => x.TableId,
@@ -269,14 +273,20 @@ namespace SmartOrder.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Order item Identifier"),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Order Identifier"),
+                    MenuItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Menu Item Identifier"),
                     Quantity = table.Column<int>(type: "int", nullable: false, comment: "Quantity of the item ordered."),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Item name."),
-                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Price of a single unit of the item."),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Additional notes or comments about the item.")
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Additional notes or comments about the item."),
+                    IsServed = table.Column<bool>(type: "bit", nullable: false, comment: "Is item served by waiter")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_MenuItems_MenuItemId",
+                        column: x => x.MenuItemId,
+                        principalTable: "MenuItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
@@ -340,9 +350,19 @@ namespace SmartOrder.Data.Migrations
                 column: "MenuCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_MenuItemId",
+                table: "OrderItems",
+                column: "MenuItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AssignedWaiterId",
+                table: "Orders",
+                column: "AssignedWaiterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_TableId",
@@ -374,22 +394,22 @@ namespace SmartOrder.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "MenuItems");
-
-            migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "MenuItems");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "MenuCategories");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Tables");

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SmartOrder.Common\SmartOrder.Common.csproj" />
+  </ItemGroup>
+
 </Project>

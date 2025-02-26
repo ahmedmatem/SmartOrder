@@ -39,6 +39,7 @@ namespace SmartOrder.Data.Configuration
 
         public SeedData()
         {
+            
             SeedVenues();
             SeedRoles();
             SeedUsers();
@@ -114,7 +115,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "waiter1@mail.com",
                 NormalizedEmail = "waiter1@mail.com",
                 FullName = "First Waiter",
-                VenueId = FirstVenue.Id
+                VenueId = FirstVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             FirstVenueWaiterUser.PasswordHash =
@@ -128,7 +130,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "waiter2@mail.com",
                 NormalizedEmail = "waiter2@mail.com",
                 FullName = "Second Waiter",
-                VenueId = SecondVenue.Id
+                VenueId = SecondVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             SecondVenueWaiterUser.PasswordHash =
@@ -142,7 +145,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "waiter3@mail.com",
                 NormalizedEmail = "waiter3@mail.com",
                 FullName = "Third Waiter",
-                VenueId = ThirdVenue.Id
+                VenueId = ThirdVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             ThirdVenueWaiterUser.PasswordHash =
@@ -156,7 +160,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "manager1@mail.com",
                 NormalizedEmail = "manager1@mail.com",
                 FullName = "First Manager",
-                VenueId = FirstVenue.Id
+                VenueId = FirstVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             FirstVenueManagerUser.PasswordHash =
@@ -170,7 +175,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "manager2@mail.com",
                 NormalizedEmail = "manager2@mail.com",
                 FullName = "Second Manager",
-                VenueId = SecondVenue.Id
+                VenueId = SecondVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             SecondVenueManagerUser.PasswordHash =
@@ -184,7 +190,8 @@ namespace SmartOrder.Data.Configuration
                 Email = "manager3@mail.com",
                 NormalizedEmail = "manager3@mail.com",
                 FullName = "Third Manager",
-                VenueId = ThirdVenue.Id
+                VenueId = ThirdVenue.Id,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             ThirdVenueManagerUser.PasswordHash =
@@ -197,7 +204,8 @@ namespace SmartOrder.Data.Configuration
                 NormalizedUserName = "admin@mail.com",
                 Email = "admin@mail.com",
                 NormalizedEmail = "admin@mail.com",
-                FullName = "Great Admin"
+                FullName = "Great Admin",
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             AdminUser.PasswordHash =
@@ -405,8 +413,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Шопска салата",
                     Description = "Класическа българска салата с домати, краставици, лук, сирене и зехтин",
                     Price = 7.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Салата, Вегетарианско",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/0/09/Chopska.jpg"
                 },
@@ -417,8 +423,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Гъби на фурна",
                     Description = "Печени гъби с чесън, мащерка и зехтин",
                     Price = 6.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Гъби, Вегетарианско",
                     ImageUrl = "https://gotvach.bg/files/1200x800/pechurki-maslo-furna.webp"
                 },
@@ -430,8 +434,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Свинско с картофи",
                     Description = "Запечено свинско месо с картофи и подправки",
                     Price = 14.99m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Месо, Традиционно",
                     ImageUrl = "https://matekitchen.com/wp-content/uploads/2023/12/svinsko-s-kartofi.jpg"
                 },
@@ -442,8 +444,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Пиле с ориз",
                     Description = "Пилешко филе с ориз и зеленчуци",
                     Price = 12.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Пиле, Лесно",
                     ImageUrl = "https://lysp.eu/wp-content/uploads/2022/04/pile-s-oriz-big-1200x675.jpg"
                 },
@@ -454,8 +454,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Риба на скара",
                     Description = "Пъстърва на скара с лимон и зехтин",
                     Price = 16.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Риба, Здравословно",
                     ImageUrl = "https://matekitchen.com/wp-content/uploads/2019/09/CG012b_pystyrva-na-skara-s-limon-shalot-i-bilki.jpg"
                 },
@@ -467,8 +465,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Шоколадова торта",
                     Description = "Шоколадова торта с ванилов крем и горски плодове",
                     Price = 6.99m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Торта, Шоколад",
                     ImageUrl = "https://sire-media-foxbg.fichub.com/24k_bg/clip-main/643955.1200x675.jpg"
                 },
@@ -479,8 +475,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Крем карамел",
                     Description = "Класически крем карамел с карамелен сос",
                     Price = 5.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Десерт, Крем",
                     ImageUrl = "https://www.kulinarno-joana.com/wp-content/uploads/2011/05/DSC1671-2.jpg"
                 },
@@ -491,8 +485,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Палачинки с мед и орехи",
                     Description = "Палачинки с пълнозърнесто брашно, мед и счукани орехи",
                     Price = 7.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Палачинки, Сладко",
                     ImageUrl = "https://www.bonapeti.bg/uploads/posts/post315.jpg"
                 }
@@ -507,8 +499,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Еспресо",
                     Description = "Класическо еспресо с богат вкус",
                     Price = 2.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Кафе, Класика",
                     ImageUrl = "https://cdn4.focus.bg/fakti/photos/big/83f/kakva-e-razlikata-mejdu-espreso-i-obiknoveno-kafe-1.jpg"
                 },
@@ -519,8 +509,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Капучино",
                     Description = "Капучино с кремообразна пяна",
                     Price = 3.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Кафе, Мляко",
                     ImageUrl = "https://instantpot.bg/wp-content/uploads/instantpot-recepta-capuccino.jpg"
                 },
@@ -531,8 +519,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Чай",
                     Description = "Избор от зелен, черен и плодов чай",
                     Price = 2.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Чай, Без кофеин",
                     ImageUrl = "https://natural.bg/wp-content/uploads/2022/10/%D0%B1%D0%B8%D0%BB%D0%BA%D0%BE%D0%B2-%D1%87%D0%B0%D0%B9-%D1%81%D1%80%D0%B5%D1%89%D1%83-%D1%81%D1%82%D0%B0%D1%80%D0%B0%D0%B5%D0%B5%D0%BD%D0%B5-1600x1068.jpg"
                 },
@@ -544,8 +530,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Сандвич с прошуто",
                     Description = "Сандвич с прошуто, сирене и рукола",
                     Price = 6.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Сандвич, Леко",
                     ImageUrl = "https://matekitchen.com/wp-content/uploads/2021/01/sandvich-proshuto-motsarela.jpg"
                 },
@@ -556,8 +540,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Кекс",
                     Description = "Домашен кекс с шоколадови парченца",
                     Price = 3.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Кекс, Сладко",
                     ImageUrl = "https://gotvach.bg/files/1200x800/parcheta-keks-pudra.webp"
                 },
@@ -569,8 +551,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Шоколадова торта",
                     Description = "Шоколадова торта с ванилов крем",
                     Price = 5.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Торта, Шоколад",
                     ImageUrl = "https://sire-media-foxbg.fichub.com/24k_bg/clip-main/643955.1200x675.jpg"
                 },
@@ -581,8 +561,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Сладолед",
                     Description = "Домашен сладолед с избор от вкусове",
                     Price = 4.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Сладолед, Освежаващо",
                     ImageUrl = "https://www.lunchbox.eu/wp-content/uploads/2017/06/20170616-DSC_5625.jpg"
                 }
@@ -597,8 +575,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Червено вино",
                     Description = "Българско червено вино, 150 мл",
                     Price = 5.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Вино, Алкохол"
                 },
                 new MenuItem
@@ -608,8 +584,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Маргарита",
                     Description = "Класически коктейл с текила и лайм",
                     Price = 8.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Коктейл, Алкохол"
                 },
 
@@ -620,8 +594,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Сок от портокал",
                     Description = "Пресно изстискан сок от портокал",
                     Price = 3.50m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Сок, Безалкохолно"
                 },
                 new MenuItem
@@ -631,8 +603,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Лимонада",
                     Description = "Домашна лимонада с мента и лимон",
                     Price = 4.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Лимонада, Освежаващо"
                 },
 
@@ -643,8 +613,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Чипс",
                     Description = "Хрупкав чипс със сол",
                     Price = 2.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Чипс, Леко"
                 },
                 new MenuItem
@@ -654,8 +622,6 @@ namespace SmartOrder.Data.Configuration
                     Title = "Плато с месо и сирена",
                     Description = "Сирене и месни деликатеси",
                     Price = 10.00m,
-                    IsAvailable = true,
-                    Quantity = 1,
                     Tags = "Сирене, Месо"
                 }
             };

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartOrder.Data;
 using SmartOrder.Data.Models;
+using SmartOrder.Data.Repository.Interfaces;
+using SmartOrder.Data.Repository;
+using SmartOrder.Services.Data.Interfaces;
 using SmartOrder.Web.Infrastructure.Extensions;
 namespace SmartOrder.Web
 {
@@ -30,12 +33,22 @@ namespace SmartOrder.Web
                 .AddSignInManager<SignInManager<ApplicationUser>>()
                 .AddUserManager<UserManager<ApplicationUser>>();
 
-            builder.Services.RegisterRepositories(typeof(ApplicationUser).Assembly);
+            builder.Services.RegisterRepositories(typeof(Venue).Assembly);
+            builder.Services.AddScoped<IRepository<ApplicationUser, Guid>, BaseRepository<ApplicationUser, Guid>>();
+            builder.Services.RegisterUserDefinedServices(typeof(IOrderService).Assembly);
 
             builder.Services.AddControllersWithViews(cfg =>
                 {
                     cfg.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 });
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddRazorPages();
 
             WebApplication app = builder.Build();
@@ -58,8 +71,15 @@ namespace SmartOrder.Web
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseSession();
             app.UseAuthorization();
 
+            app.MapControllerRoute(
+                name: "Areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute(
+                name: "Errors",
+                pattern: "{controller=Home}/{action=Index}/{statusCode?}");
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

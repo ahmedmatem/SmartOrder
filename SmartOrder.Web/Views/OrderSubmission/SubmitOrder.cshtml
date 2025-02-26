@@ -1,0 +1,40 @@
+﻿@model SmartOrder.Web.ViewModels.Order.OrderCreateViewModel
+
+@{
+    ViewData["Title"] = "Submit Order";
+}
+
+<h2>Submit Your Order</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<form asp-action="SubmitOrder" method="post">
+    <input type="hidden" asp-for="TableId" />
+
+    <div class="mb-3">
+        <label class="form-label">Items</label>
+        <ul class="list-group">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <li class="list-group-item">
+                    <strong>@Model.Items[i].MenuItemTitle</strong> - Quantity: @Model.Items[i].Quantity
+                    <input type="hidden" asp-for="Items[i].MenuItemId" />
+                    <input type="hidden" asp-for="Items[i].MenuItemTitle" />
+                    <input type="hidden" asp-for="Items[i].Quantity" />
+                </li>
+            }
+        </ul>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Order</button>
+</form>

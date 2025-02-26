@@ -1,6 +1,8 @@
-﻿namespace SmartOrder.Services.Data
+﻿using SmartOrder.Services.Data.Interfaces;
+
+namespace SmartOrder.Services.Data
 {
-    public class BaseService
+    public class BaseService : IBaseService
     {
         public bool IsGuidValid(string? id, ref Guid parsedGuid)
         {

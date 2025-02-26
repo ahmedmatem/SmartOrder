@@ -31,12 +31,6 @@ namespace SmartOrder.Data.Models
         [Comment("The price of the item.")]
         public decimal Price { get; set; }
 
-        [Comment("Indicator of the item availability.")]
-        public bool IsAvailable { get; set; }
-
-        [Comment("Quantity or portion size (e.g., grams, millilitres, pieces).")]
-        public int Quantity { get; set; }
-
         [Comment("List of tags describing the item characteristics (e.g., spacy, sweet, vegan)")]
         public string Tags { get; set; } = string.Empty;
 

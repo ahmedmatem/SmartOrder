@@ -18,6 +18,7 @@
             public const int TitleMaxLength = 30;
             public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 250;
+            public const decimal PriceMinValue = 0.01m;
         }
 
         public static class MenuCategory
@@ -31,6 +32,28 @@
         public static class ApplicationUser
         {
             public const int FullNameMaxLength = 50;
+            public const int EmailMaxLength = 100;
+            public const int PasswordMinLength = 6;
+            public const int PasswordMaxLength = 100;
+        }
+
+        public static class OrderItem
+        {
+            public const int QuantityMinValue = 1;
+            public const int QuantityMaxValue = 250;
+        }
+
+        public static class Table
+        {
+            public const int TableNumberMinValue = 1;
+            public const int TableNumberMaxValue = 500;
+            public const int TokenLength = 36;
+        }
+
+        public static class Order
+        {
+            public const int StatusMinLength = 3;
+            public const int StatusMaxLength = 20;
         }
     }
 }
