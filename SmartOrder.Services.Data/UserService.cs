@@ -66,7 +66,7 @@ namespace SmartOrder.Services.Data
                 return null;
             }
 
-            var user = await userManager.Users.FirstOrDefaultAsync(u => u.Id == userGuid);
+            ApplicationUser? user = await userManager.Users.FirstOrDefaultAsync(u => u.Id == userGuid);
 
             if (user == null)
             {

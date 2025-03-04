@@ -32,6 +32,8 @@ namespace SmartOrder.Web.Areas.Admin.Controllers
                 return View(nameof(Index), await venueService.GetAllVenuesAsync());
             }
 
+            venue.Id = Guid.NewGuid().ToString();
+
             await venueService.AddVenueAsync(venue);
             return RedirectToAction(nameof(Index));
         }

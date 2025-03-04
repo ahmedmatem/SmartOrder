@@ -1,19 +1,19 @@
 ﻿@using SmartOrder.Web.ViewModels.Order
 @model IEnumerable<OrderListViewModel>
 
-<h2 class="mb-4">Orders Overview</h2>
+<h2 class="mb-4">Преглед на поръчките</h2>
 @if (!Model.Any())
 {
-    <p>No orders available.</p>
+    <p>Няма налични поръчки.</p>
 }
 else
 {
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Table Number</th>
-                <th>Status</th>
-                <th>Total Price</th>
+                <th>Номер на масата</th>
+                <th>Статус</th>
+                <th>Обща цена</th>
             </tr>
         </thead>
         <tbody>

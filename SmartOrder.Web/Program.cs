@@ -7,6 +7,7 @@ using SmartOrder.Data.Repository.Interfaces;
 using SmartOrder.Data.Repository;
 using SmartOrder.Services.Data.Interfaces;
 using SmartOrder.Web.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Identity.UI.Services;
 namespace SmartOrder.Web
 {
     public class Program

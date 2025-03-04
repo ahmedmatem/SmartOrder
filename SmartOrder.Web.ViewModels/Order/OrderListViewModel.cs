@@ -10,6 +10,7 @@ namespace SmartOrder.Web.ViewModels.Order
 
         public string Status { get; set; } = null!;
 
+        public string? AssignedWaiterId { get; set; }
         public string? AssignedWaiter { get; set; }
 
         public decimal TotalPrice { get; set; }

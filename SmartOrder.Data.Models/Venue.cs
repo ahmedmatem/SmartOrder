@@ -7,7 +7,7 @@ namespace SmartOrder.Data.Models
     {
         [Required]
         [Comment("Venue Identifier")]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(NameMaxLength)]

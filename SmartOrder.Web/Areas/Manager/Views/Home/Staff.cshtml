@@ -1,20 +1,20 @@
 ﻿@using SmartOrder.Web.ViewModels.User
 @model IEnumerable<UserViewModel>
 
-<h2 class="mb-4">Staff Management</h2>
+<h2 class="mb-4">Управление на персонала</h2>
 @if (!Model.Any())
 {
-    <p>No staff members available.</p>
+    <p>Няма налични членове на персонала.</p>
 }
 else
 {
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>Пълно име</th>
+                <th>Имейл</th>
+                <th>Роля</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -28,10 +28,10 @@ else
                         <form asp-action="AssignRole" method="post">
                             <input type="hidden" name="userId" value="@staff.Id" />
                             <select name="role" class="form-select">
-                                <option value="Waiter">Waiter</option>
-                                <option value="Manager">Manager</option>
+                                <option value="Waiter">Сервитьор</option>
+                                <option value="Manager">Мениджър</option>
                             </select>
-                            <button type="submit" class="btn btn-primary btn-sm mt-2">Assign Role</button>
+                            <button type="submit" class="btn btn-primary btn-sm mt-2">Задай роля</button>
                         </form>
                     </td>
                 </tr>

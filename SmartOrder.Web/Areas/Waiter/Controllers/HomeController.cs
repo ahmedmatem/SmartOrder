@@ -33,14 +33,42 @@ namespace SmartOrder.Web.Areas.Waiter.Controllers
                 return Unauthorized();
             }
 
-            var orders = await orderService.GetPendingOrdersByVenueAsync(waiter.VenueId.ToString()!);
+            IEnumerable<OrderListViewModel> allOrders = await orderService.GetOrdersByVenueAsync(waiter.VenueId!);
+
+            var unclaimedOrders = allOrders.Where(o => o.AssignedWaiter == "Unassigned").ToList();
+            var waiterOrders = allOrders.Where(o => o.AssignedWaiterId == waiter.Id.ToString()).ToList();
 
             var viewModel = new WaiterDashboardViewModel
             {
-                Orders = orders.ToList()
+                UnclaimedOrders = unclaimedOrders,
+                WaiterOrders = waiterOrders
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ClaimOrder(string id)
+        {
+            Guid orderGuid = Guid.Empty;
+            if (!IsGuidValid(id, ref orderGuid))
+            {
+                return View(nameof(Index));
+            }
+
+            ApplicationUser? waiter = await userService.GetUserByIdAsync(this.User.GetUserId()!);
+            if (waiter == null)
+            {
+                return Unauthorized();
+            }
+
+            bool success = await orderService.AssignOrderToWaiterAsync(orderGuid, waiter.Id);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

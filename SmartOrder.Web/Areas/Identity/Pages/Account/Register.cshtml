@@ -1,13 +1,12 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация на Мениджър";
 }
 
-<h2>@ViewData["Title"]</h2>
-
-<form method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
+<h2>Регистрация на Мениджър</h2>
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
         <label asp-for="Input.FullName"></label>
@@ -23,19 +22,34 @@
 
     <div class="form-group">
         <label asp-for="Input.Password"></label>
-        <input asp-for="Input.Password" type="password" class="form-control" />
+        <input asp-for="Input.Password" class="form-control" />
         <span asp-validation-for="Input.Password" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Input.ConfirmPassword"></label>
-        <input asp-for="Input.ConfirmPassword" type="password" class="form-control" />
+        <input asp-for="Input.ConfirmPassword" class="form-control" />
         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+    <!-- Полета за заведението -->
+    <div class="form-group">
+        <label asp-for="Input.VenueName"></label>
+        <input asp-for="Input.VenueName" class="form-control" />
+        <span asp-validation-for="Input.VenueName" class="text-danger"></span>
+    </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <div class="form-group">
+        <label asp-for="Input.VenueType"></label>
+        <input asp-for="Input.VenueType" class="form-control" />
+        <span asp-validation-for="Input.VenueType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Input.VenueCity"></label>
+        <input asp-for="Input.VenueCity" class="form-control" />
+        <span asp-validation-for="Input.VenueCity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Регистрирай се</button>
+</form>

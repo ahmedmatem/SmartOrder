@@ -9,7 +9,7 @@ namespace SmartOrder.Data.Models
     {
         [Required]
         [Comment("Menu item Identifier")]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
 
         [Required]
         [Comment("Item Category Identifier")]

@@ -1,10 +1,10 @@
 ﻿@model SmartOrder.Web.ViewModels.Order.OrderCreateViewModel
 
 @{
-    ViewData["Title"] = "Submit Order";
+    ViewData["Title"] = "Завършване на поръчката";
 }
 
-<h2>Submit Your Order</h2>
+<h2>Завършване на поръчката</h2>
 
 @if (!ViewData.ModelState.IsValid)
 {
@@ -22,12 +22,11 @@
     <input type="hidden" asp-for="TableId" />
 
     <div class="mb-3">
-        <label class="form-label">Items</label>
         <ul class="list-group">
             @for (int i = 0; i < Model.Items.Count; i++)
             {
                 <li class="list-group-item">
-                    <strong>@Model.Items[i].MenuItemTitle</strong> - Quantity: @Model.Items[i].Quantity
+                    <strong>@Model.Items[i].MenuItemTitle</strong> - Количество: @Model.Items[i].Quantity
                     <input type="hidden" asp-for="Items[i].MenuItemId" />
                     <input type="hidden" asp-for="Items[i].MenuItemTitle" />
                     <input type="hidden" asp-for="Items[i].Quantity" />
@@ -36,5 +35,5 @@
         </ul>
     </div>
 
-    <button type="submit" class="btn btn-primary">Confirm Order</button>
+    <button type="submit" class="btn btn-primary">Поръчване</button>
 </form>

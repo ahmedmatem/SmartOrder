@@ -23,7 +23,10 @@
     @foreach (var item in Model)
     {
         <div class="menu-item" data-category="@item.MenuCategoryId" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-            <img src="@item.ImageUrl" alt="@item.Title" style="width: 100%; max-width: 150px;" />
+            @if(item.ImageUrl != "")
+            {
+                <img src="@item.ImageUrl" alt="@item.Title" style="width: 100%; max-width: 150px;" />
+            }
             <h3>@item.Title</h3>
             <p>@item.Description</p>
             <span>@item.Price лв</span>
@@ -47,7 +50,7 @@
         </div>
         <form asp-action="Checkout" asp-controller="OrderSubmission" method="get">
             <input type="hidden" name="token" value="@ViewBag.Token" />
-            <button type="submit" class="btn btn-primary">Преглед на поръчката</button>
+            <button type="submit" class="btn btn-primary mt-1">Преглед на поръчката</button>
         </form>
     </div>
 </div>

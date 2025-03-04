@@ -23,10 +23,10 @@ namespace SmartOrder.Services.Data
                 .Where(o => o.Table.VenueId.ToString() == venueId)
                 .ToListAsync();
 
-            return orders.GroupBy(o => o.TableId)
+            return orders.GroupBy(o => o.Table.TableNumber)
                          .Select(g => new SalesReportViewModel
                          {
-                             TableId = g.Key.ToString(),
+                             TableNumber = g.Key.ToString(),
                              TotalOrders = g.Count(),
                              TotalRevenue = g.Sum(o => o.TotalPrice)
                          });

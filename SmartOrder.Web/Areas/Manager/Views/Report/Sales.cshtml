@@ -1,26 +1,26 @@
 ﻿@using SmartOrder.Web.ViewModels.Report
 @model IEnumerable<SalesReportViewModel>
 
-<h2 class="mb-4">Sales Report</h2>
+<h2 class="mb-4">Отчет за продажбите</h2>
 @if (!Model.Any())
 {
-    <p>No sales data available.</p>
+    <p>Няма налични данни за продажбите.</p>
 }
 else
 {
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Table ID</th>
-                <th>Total Orders</th>
-                <th>Total Revenue</th>
+                <th>Номер на масата</th>
+                <th>Общо поръчки</th>
+                <th>Общ приход</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var report in Model)
             {
                 <tr>
-                    <td>@report.TableId</td>
+                    <td>@report.TableNumber</td>
                     <td>@report.TotalOrders</td>
                     <td>@report.TotalRevenue.ToString("C")</td>
                 </tr>

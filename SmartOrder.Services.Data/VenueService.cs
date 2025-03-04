@@ -33,7 +33,7 @@ namespace SmartOrder.Services.Data
         {
             Venue venue = new Venue
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse(venueViewModel.Id),
                 Name = venueViewModel.Name,
                 Type = venueViewModel.Type,
                 City = venueViewModel.City,

@@ -2,7 +2,7 @@
 {
     public class SalesReportViewModel
     {
-        public string TableId { get; set; } = null!;
+        public string TableNumber { get; set; } = null!;
         public int TotalOrders { get; set; }
         public decimal TotalRevenue { get; set; }
     }

@@ -10,6 +10,7 @@ namespace SmartOrder.Services.Data.Interfaces
         Task<bool> CreateOrderAsync(OrderCreateViewModel viewModel);
         Task<OrderDetailsViewModel> GetOrderByIdAsync(Guid id);
         Task<IEnumerable<OrderListViewModel>> GetPendingOrdersByVenueAsync(string venueId);
+        Task<bool> AssignOrderToWaiterAsync(Guid orderId, Guid waiterId);
         Task<bool> UpdateOrderStatusAsync(Guid orderId, string status);
     }
 }

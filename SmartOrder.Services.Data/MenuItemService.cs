@@ -15,26 +15,6 @@ namespace SmartOrder.Services.Data
             this.menuRepository = menuRepository;
         }
 
-        public async Task<IEnumerable<MenuItemViewModel>> GetAllMenuItemsAsync()
-        {
-            IEnumerable<MenuItem> menuItems = await menuRepository
-                .GetAllAttached()
-                .Include(mi => mi.MenuCategory)
-                .ToListAsync();
-
-            return menuItems.Select(item => new MenuItemViewModel
-            {
-                Id = item.Id.ToString(),
-                MenuCategoryId = item.MenuCategoryId.ToString(),
-                MenuCategoryTitle = item.MenuCategory.Title,
-                Title = item.Title,
-                Description = item.Description,
-                Price = item.Price,
-                Tags = item.Tags,
-                ImageUrl = item.ImageUrl
-            });
-        }
-
         public async Task<bool> AddMenuItemAsync(MenuItemViewModel menuItemViewModel)
         {
             MenuItem menuItem = new MenuItem
@@ -45,6 +25,53 @@ namespace SmartOrder.Services.Data
                 Price = menuItemViewModel.Price
             };
             await menuRepository.AddAsync(menuItem);
+            return true;
+        }
+
+        public async Task<MenuItemViewModel?> GetMenuItemByIdAsync(Guid menuItemId)
+        {
+            MenuItem? menuItem = await menuRepository
+                .GetAllAttached()
+                .Include(m => m.MenuCategory)
+                .FirstOrDefaultAsync(m => m.Id == menuItemId);
+
+            if (menuItem == null)
+            {
+                return null;
+            }
+
+            return new MenuItemViewModel
+            {
+                Id = menuItem.Id.ToString(),
+                Title = menuItem.Title,
+                Description = menuItem.Description,
+                Price = menuItem.Price,
+                ImageUrl = menuItem.ImageUrl,
+                MenuCategoryId = menuItem.MenuCategoryId.ToString(),
+                MenuCategoryTitle = menuItem.MenuCategory.Title
+            };
+        }
+
+        public async Task<bool> UpdateMenuItemAsync(MenuItemViewModel menuItemViewModel)
+        {
+            Guid menuItemGuid = Guid.Empty;
+            if (!IsGuidValid(menuItemViewModel.Id, ref menuItemGuid))
+            {
+                return false;
+            }
+
+            MenuItem? menuItem = await menuRepository.GetByIdAsync(menuItemGuid);
+            if (menuItem == null)
+            {
+                return false;
+            }
+
+            menuItem.Title = menuItemViewModel.Title;
+            menuItem.Description = menuItemViewModel.Description;
+            menuItem.Price = menuItemViewModel.Price;
+            menuItem.ImageUrl = menuItemViewModel.ImageUrl;
+
+            await menuRepository.UpdateAsync(menuItem);
             return true;
         }
 
@@ -60,9 +87,9 @@ namespace SmartOrder.Services.Data
             return true;
         }
 
-        public async Task<IEnumerable<MenuItemViewModel>> GetMenuItemsByVenueAsync(Guid venueId)
+        public async Task<IEnumerable<MenuItemViewModel>> GetMenuItemsByVenueAsync(Guid? venueId)
         {
-            var menuItems = await menuRepository
+            IEnumerable<MenuItem> menuItems = await menuRepository
                 .GetAllAttached()
                 .Include(m => m.MenuCategory)
                 .Where(m => m.MenuCategory.VenueId == venueId)

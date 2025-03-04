@@ -4,9 +4,10 @@ namespace SmartOrder.Services.Data.Interfaces
 {
     public interface IMenuItemService
     {
-        Task<IEnumerable<MenuItemViewModel>> GetAllMenuItemsAsync();
         Task<bool> AddMenuItemAsync(MenuItemViewModel menuItem);
+        Task<MenuItemViewModel?> GetMenuItemByIdAsync(Guid menuItemId);
+        Task<bool> UpdateMenuItemAsync(MenuItemViewModel menuItemViewModel);
         Task<bool> DeleteMenuItemAsync(Guid menuItemId);
-        Task<IEnumerable<MenuItemViewModel>> GetMenuItemsByVenueAsync(Guid venueId);
+        Task<IEnumerable<MenuItemViewModel>> GetMenuItemsByVenueAsync(Guid? venueId);
     }
 }
