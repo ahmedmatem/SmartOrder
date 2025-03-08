@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th>Маса</th>
+            <th></th>
             <th>Действия</th>
         </tr>
     </thead>
@@ -14,6 +15,16 @@
         {
             <tr>
                 <td>@order.TableNumber</td>
+                <td>
+                    <ul class="list-group">
+                        @foreach (var item in order.Items)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>@item.ItemName - @item.Quantity × $@item.Price</span>
+                            </li>
+                        }
+                    </ul>
+                </td>
                 <td>
                     <form method="post" asp-action="ClaimOrder">
                         <input type="hidden" name="id" value="@order.Id" />
@@ -30,6 +41,7 @@
     <thead>
         <tr>
             <th>Маса</th>
+            <th></th>
             <th>Статус</th>
             <th>Действия</th>
         </tr>
@@ -39,6 +51,16 @@
         {
             <tr>
                 <td>@order.TableNumber</td>
+                <td>
+                    <ul class="list-group">
+                        @foreach (var item in order.Items)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>@item.ItemName - @item.Quantity × @item.Price лв</span>
+                            </li>
+                        }
+                    </ul>
+                </td>
                 <td>@order.Status</td>
                 <td>
                     <form method="post" asp-action="UpdateStatus">

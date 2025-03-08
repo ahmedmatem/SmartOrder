@@ -20,7 +20,9 @@ namespace SmartOrder.Services.Data
             IEnumerable<Order> orders = await orderRepository
                 .GetAllAttached()
                 .Include(o => o.Table)
-                .Where(o => o.Table.VenueId.ToString() == venueId)
+                .Include(o => o.Items)
+                .ThenInclude(oi => oi.MenuItem)
+                .Where(o => o.Table.VenueId.ToString() == venueId && o.Status == Common.Enums.OrderStatus.Completed)
                 .ToListAsync();
 
             return orders.GroupBy(o => o.Table.TableNumber)

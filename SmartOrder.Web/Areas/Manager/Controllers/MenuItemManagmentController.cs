@@ -11,35 +11,19 @@ namespace SmartOrder.Web.Areas.Manager.Controllers
 {
     [Area("Manager")]
     [Authorize(Roles = "Manager")]
-    public class MenuItemController : BaseController
+    public class MenuItemManagmentController : BaseController
     {
         private readonly IMenuItemService menuService;
         private readonly IUserService userService;
         private readonly ITableService tableService;
         private readonly IMenuCategoryService menuCategoryService;
 
-        public MenuItemController(IMenuItemService menuService, IUserService userService, ITableService tableService, IMenuCategoryService menuCategoryService)
+        public MenuItemManagmentController(IMenuItemService menuService, IUserService userService, ITableService tableService, IMenuCategoryService menuCategoryService)
         {
             this.menuService = menuService;
             this.userService = userService;
             this.tableService = tableService;
             this.menuCategoryService = menuCategoryService;
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Index(string token)
-        {
-            Guid? venueId = await tableService.GetVenueIdByTableTokenAsync(token);
-            if (venueId == null)
-            {
-                return BadRequest("Invalid Table Token");
-            }
-
-            IEnumerable<MenuItemViewModel> menuItems = await menuService.GetMenuItemsByVenueAsync(venueId.Value);
-            ViewBag.Categories = await menuCategoryService.GetAllMenuCategoriesByVenueAsync(venueId);
-            ViewBag.Token = token;
-            return View(menuItems);
         }
 
         [HttpGet]

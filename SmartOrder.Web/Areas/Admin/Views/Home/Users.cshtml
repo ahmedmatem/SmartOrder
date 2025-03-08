@@ -3,20 +3,20 @@
 @{
     IEnumerable<string> roles = ViewBag.Roles;
 }
-<h2 class="mb-4">User Management</h2>
+<h2 class="mb-4">Управление на потребители</h2>
 @if (!Model.Any())
 {
-    <p>No users available.</p>
+    <p>Няма налични потребители.</p>
 }
 else
 {
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>Пълно име</th>
+                <th>Имейл</th>
+                <th>Роля</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -38,15 +38,15 @@ else
                                 }
                                 else
                                 {
-                                    <option disabled>No roles available</option>
+                                    <option disabled>Няма налични роли</option>
                                 }
                             </select>
                         </form>
                     </td>
                     <td>
-                        <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Are you sure?');">
+                        <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Сигурни ли сте?');">
                             <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Изтриване</button>
                         </form>
                     </td>
                 </tr>

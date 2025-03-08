@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartOrder.Services.Data.Interfaces;
 using SmartOrder.Web.Controllers;
-using SmartOrder.Web.ViewModels.Order;
 
 namespace SmartOrder.Web.Areas.Admin.Controllers
 {
@@ -22,13 +21,6 @@ namespace SmartOrder.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Orders()
-        {
-            IEnumerable<OrderListViewModel> orders = await orderService.GetAllOrdersAsync();
-            return View(orders);
         }
 
         [HttpGet]

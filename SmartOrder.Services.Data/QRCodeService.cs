@@ -17,7 +17,7 @@ namespace SmartOrder.Services.Data
                 throw new ArgumentException("Invalid Table Token");
             }
 
-            string url = $"https://172.20.10.2/MenuItem?token={token}";
+            string url = $"https://smartorderer.azurewebsites.net/MenuItem?token={token}";
         
             using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
             using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q))

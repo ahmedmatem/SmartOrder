@@ -59,47 +59,6 @@ namespace SmartOrder.Services.Tests
         }
 
         [Test]
-        public async Task GetAllOrdersAsync_ShouldReturnOrders()
-        {
-            Table table = new Table() 
-            {
-                Id = Guid.NewGuid(),
-                TableNumber = 5
-            };
-
-            var orders = new List<Order>
-            {
-                new Order { Id = Guid.NewGuid(), TableId = table.Id, Table = table, Status = OrderStatus.Pending }
-            };
-            var mockDbSet = orders.AsQueryable().BuildMock();
-
-            orderRepoMock.Setup(repo => repo.GetAllAttached()).Returns(mockDbSet);
-
-            var result = await orderService.GetAllOrdersAsync();
-
-            Assert.That(result.Count(), Is.EqualTo(1));
-        }
-
-        [Test]
-        public async Task GetOrderByIdAsync_ShouldReturnCorrectOrder()
-        {
-            Table table = new Table()
-            {
-                Id = Guid.NewGuid(),
-                TableNumber = 5
-            };
-
-            var orderId = Guid.NewGuid();
-            var order = new Order { Id = orderId, TableId = table.Id, Table = table, Status = OrderStatus.Pending };
-            orderRepoMock.Setup(repo => repo.GetByIdAsync(orderId)).ReturnsAsync(order);
-
-            var result = await orderService.GetOrderByIdAsync(orderId);
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Id, Is.EqualTo(orderId.ToString()));
-        }
-
-        [Test]
         public async Task AssignOrderToWaiterAsync_ShouldSucceed_WhenOrderIsUnassigned()
         {
             var orderId = Guid.NewGuid();

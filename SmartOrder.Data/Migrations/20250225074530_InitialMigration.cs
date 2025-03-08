@@ -90,7 +90,8 @@ namespace SmartOrder.Data.Migrations
                         name: "FK_AspNetUsers_Venues_VenueId",
                         column: x => x.VenueId,
                         principalTable: "Venues",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -258,7 +259,7 @@ namespace SmartOrder.Data.Migrations
                         column: x => x.AssignedWaiterId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Orders_Tables_TableId",
                         column: x => x.TableId,

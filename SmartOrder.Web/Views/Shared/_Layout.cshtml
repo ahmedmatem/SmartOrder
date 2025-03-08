@@ -49,7 +49,22 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <!--<a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>-->
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Аминистраторско табло</a>
+
+                                    }
+                                    else if (User.IsInRole("Manager"))
+                                    {
+                                        <a class="nav-link text-light" asp-area="Manager" asp-controller="Home" asp-action="Index">Мениджърско табло</a>
+                                    }
+                                    else if (User.IsInRole("Waiter"))
+                                    {
+                                        <a class="nav-link text-light" asp-area="Waiter" asp-controller="Home" asp-action="Index">Управление на поръчки</a>
+                                    }
+                                }
                             </li>
                         </ul>
                         <partial name="_LoginPartial" />

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartOrder.Data.Models;
-using SmartOrder.Services.Data;
 using SmartOrder.Services.Data.Interfaces;
 using SmartOrder.Web.Controllers;
 using SmartOrder.Web.Infrastructure.Extensions;
@@ -33,7 +32,7 @@ namespace SmartOrder.Web.Areas.Waiter.Controllers
                 return Unauthorized();
             }
 
-            IEnumerable<OrderListViewModel> allOrders = await orderService.GetOrdersByVenueAsync(waiter.VenueId!);
+            IEnumerable<OrderDetailsViewModel> allOrders = await orderService.GetOrdersByVenueAsync(waiter.VenueId!);
 
             var unclaimedOrders = allOrders.Where(o => o.AssignedWaiter == "Unassigned").ToList();
             var waiterOrders = allOrders.Where(o => o.AssignedWaiterId == waiter.Id.ToString()).ToList();

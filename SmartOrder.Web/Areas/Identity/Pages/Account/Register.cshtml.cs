@@ -97,12 +97,15 @@ namespace SmartOrder.Web.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
+            [Display(Name = "Име на заведението")]
             public string VenueName { get; set; }
 
             [Required]
+            [Display(Name = "Тип")]
             public string VenueType { get; set; }
 
             [Required]
+            [Display(Name = "Град")]
             public string VenueCity { get; set; }
         }
 

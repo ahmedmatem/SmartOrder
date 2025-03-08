@@ -33,7 +33,7 @@ namespace SmartOrder.Web.Areas.Manager.Controllers
         {
             ApplicationUser? manager = await userService.GetUserByIdAsync(this.User.GetUserId()!);
 
-            IEnumerable<OrderListViewModel> orders = await orderService.GetOrdersByVenueAsync(manager!.VenueId);
+            IEnumerable<OrderDetailsViewModel> orders = await orderService.GetOrdersByVenueAsync(manager!.VenueId);
             return View(orders);
         }
 

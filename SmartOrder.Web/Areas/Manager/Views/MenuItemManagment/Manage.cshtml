@@ -3,6 +3,7 @@
 @using SmartOrder.Common;
 
 <h2 class="mb-4">Управление на менюто</h2>
+
 @if (!Model.Any())
 {
     <div class="alert alert-info">Няма налични артикули в менюто.</div>
@@ -37,6 +38,12 @@ else
         </tbody>
     </table>
 }
+
+<div class="mt-3">
+    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">
+        Обратно към таблото
+    </a>
+</div>
 
 <h3 class="mt-4">Добавяне на нов артикул в менюто</h3>
 <form asp-action="Add" method="post" class="form-group">

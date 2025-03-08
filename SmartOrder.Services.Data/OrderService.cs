@@ -47,90 +47,34 @@ namespace SmartOrder.Services.Data
             return true;
         }
 
-        public async Task<IEnumerable<OrderListViewModel>> GetAllOrdersAsync()
-        {
-            IEnumerable<Order> orders = await orderRepository
-                .GetAllAttached()
-                .Include(o => o.AssignedWaiter)
-                .ToListAsync();
-
-            return orders.Select(o => new OrderListViewModel
-            {
-                Id = o.Id.ToString(),
-                TableNumber = o.Table.TableNumber,
-                Status = o.Status.ToString(),
-                AssignedWaiterId = o.AssignedWaiterId.ToString(),
-                AssignedWaiter = o.AssignedWaiter != null ? o.AssignedWaiter.FullName : "Unassigned",
-                TotalPrice = o.TotalPrice
-            });
-        }
-
-        public async Task<IEnumerable<OrderListViewModel>> GetOrdersByVenueAsync(Guid? venueId)
-        {
-            IEnumerable<Order> orders = await orderRepository
-                .GetAllAttached()
-                .Include(o => o.Table)
-                .Include(o => o.AssignedWaiter)
-                .Where(o => o.Table.VenueId == venueId)
-                .ToListAsync();
-
-            return orders.Select(o => new OrderListViewModel
-            {
-                Id = o.Id.ToString(),
-                TableNumber = o.Table.TableNumber,
-                Status = o.Status.ToString(),
-                AssignedWaiterId = o.AssignedWaiterId.ToString(),
-                AssignedWaiter = o.AssignedWaiter != null ? o.AssignedWaiter.FullName : "Unassigned",
-                TotalPrice = o.TotalPrice
-            });
-        }
-
-        public async Task<OrderDetailsViewModel> GetOrderByIdAsync(Guid id)
-        {
-            Order order = await orderRepository.GetByIdAsync(id);
-            if (order == null)
-            {
-                return null;
-            }
-
-            return new OrderDetailsViewModel
-            {
-                Id = order.Id.ToString(),
-                TableNumber = order.Table.TableNumber,
-                Status = order.Status.ToString(),
-                AssignedWaiterId = order.AssignedWaiterId.ToString(),
-                AssignedWaiter = order.AssignedWaiter != null ? order.AssignedWaiter.FullName : "Unassigned",
-                TotalPrice = order.TotalPrice,
-                Items = order.Items.Select(i => new OrderItemDetailsViewModel
-                {
-                    ItemName = i.MenuItem.Title,
-                    Quantity = i.Quantity,
-                    Price = i.MenuItem.Price
-                }).ToList()
-            };
-        }
-
-        public async Task<IEnumerable<OrderListViewModel>> GetPendingOrdersByVenueAsync(string venueId)
+        public async Task<IEnumerable<OrderDetailsViewModel>> GetOrdersByVenueAsync(Guid? venueId)
         {
             IEnumerable<Order> orders = await orderRepository
                 .GetAllAttached()
                 .Include(o => o.Table)
                 .Include(o => o.AssignedWaiter)
                 .Include(o => o.Items)
-                .ThenInclude(o => o.MenuItem)
-                .Where(o => o.Table.VenueId.ToString() == venueId && o.Status == OrderStatus.Pending)
+                .ThenInclude(oi => oi.MenuItem)
+                .Where(o => o.Table.VenueId == venueId)
                 .ToListAsync();
 
-            return orders.Select(o => new OrderListViewModel
+            return orders.Select(o => new OrderDetailsViewModel
             {
                 Id = o.Id.ToString(),
                 TableNumber = o.Table.TableNumber,
                 Status = o.Status.ToString(),
                 AssignedWaiterId = o.AssignedWaiterId.ToString(),
                 AssignedWaiter = o.AssignedWaiter != null ? o.AssignedWaiter.FullName : "Unassigned",
-                TotalPrice = o.TotalPrice
+                TotalPrice = o.TotalPrice,
+                Items = o.Items.Select(oi => new OrderItemDetailsViewModel
+                {
+                    ItemName = oi.MenuItem.Title,
+                    Quantity = oi.Quantity,
+                    Price = oi.TotalPrice
+                }).ToList()
             });
         }
+        
         public async Task<bool> AssignOrderToWaiterAsync(Guid orderId, Guid waiterId)
         {
             Order? order = await orderRepository.FirstOrDefaultAsync(o => o.Id == orderId);
@@ -145,6 +89,7 @@ namespace SmartOrder.Services.Data
 
             return true;
         }
+        
         public async Task<bool> UpdateOrderStatusAsync(Guid orderId, string status)
         {
             Order order = await orderRepository.GetByIdAsync(orderId);

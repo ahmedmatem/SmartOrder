@@ -25,20 +25,6 @@ namespace SmartOrder.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(VenueViewModel venue)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(nameof(Index), await venueService.GetAllVenuesAsync());
-            }
-
-            venue.Id = Guid.NewGuid().ToString();
-
-            await venueService.AddVenueAsync(venue);
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             Guid venueGuid = Guid.Empty;
